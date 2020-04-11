@@ -29,7 +29,6 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 	private PanelPlano pPlano;
 	private VMagnitud vMagnitud;
 	private VPosicion vPosicion;
-	private VBienvenido vbien;
 	private int contP = 0, contN = 0;
 	private ArrayList<JButton> btnPositivos;
 	private ArrayList<JButton> btnNegativos;

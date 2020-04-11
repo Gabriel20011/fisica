@@ -184,11 +184,8 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			else {
 				int Juanito1 =(int) c.getPivote().getUniI() * 10;
 				int Juanito2 =(int) c.getPivote().getUniJ() * 10;
-				System.out.println("Valor supuesto en x" + Juanito1);
-				System.out.println("Valor supuesto en y" + Juanito2);
 				puntoFin = new Point(Juanito1+ 25,Juanito2 + 25);
 				puntoInicio = new Point(unitario.getLocation().x + 25 , unitario.getLocation().y + 25);
-				System.out.println("Jiji: " + puntoFin.toString());
 				pPlano.graficarUnitario(puntoInicio, puntoFin);
 			}
 		}
@@ -204,10 +201,8 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			else {
 				int Juanito1 =(int) c.getPivote().getUniI() * 10;
 				int Juanito2 =(int) c.getPivote().getUniJ() * 10;
-				System.out.println("Valor supuesto en y" + c.getPivote().getUniJ());
 				puntoFin = new Point((int)c.getPivote().getUniI(),(int) c.getPivote().getUniJ());
 				puntoInicio = new Point(unitario.getLocation().x + 25 , unitario.getLocation().y + 25);
-				System.out.println("Jiji: " + puntoFin.toString());
 				pPlano.graficarUnitario(puntoInicio, puntoFin);
 			}
 		}
@@ -658,8 +653,12 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 				}
 			}
 			
+			System.out.println(btnPositivos.get(index).getLocation().getX() - ORIGENX);
+			System.out.println(btnPositivos.get(index).getLocation().getY() - ORIGENY);
+			System.out.println(c.getCargas().size());
 			Carga pivote = c.buscarCarga(btnPositivos.get(index).getLocation().getX() - ORIGENX,
 					btnPositivos.get(index).getLocation().getY() - ORIGENY);
+			
 			c.setPivote(pivote);
 			c.convertirMetros();
 			c.calcularCampo();

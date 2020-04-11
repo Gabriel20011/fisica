@@ -46,7 +46,6 @@ public class Controlador {
 	public Carga buscarCarga(double x, double y) {
 		Carga found = null;
 		for (Carga i : cargas) {
-			System.out.println("Carga posX: " + i.getX() + " posY" + i.getY() + " magnitud" + i.getCarga());
 			if (i.getX() == x && i.getY() == y) {
 				found = i;
 			}

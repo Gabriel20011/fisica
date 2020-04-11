@@ -732,6 +732,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 				}
 			}
 			
+			System.out.println(c.getCargas().size());
 			Carga pivote = c.buscarCarga(btnPositivos.get(index).getLocation().getX() - ORIGENX,
 					btnPositivos.get(index).getLocation().getY() - ORIGENY);
 			c.setPivote(pivote);

@@ -17,10 +17,7 @@ public class PanelPlano extends JPanel {
 
 	
 
-	public PanelPlano(int ancho, int alto) {
-		this.alto = alto;
-		this.ancho = ancho;
-
+	public PanelPlano() {
 		setLayout(null);
 		setBackground(Color.black);
 
@@ -82,6 +79,18 @@ public class PanelPlano extends JPanel {
 		g.draw(BordeInferior);
 		g.draw(BordeLateralI);
 		g.draw(BordeLateralD);
+	}
+	public int getAlto() {
+		return alto;
+	}
+	public void setAlto(int alto) {
+		this.alto = alto;
+	}
+	public int getAncho() {
+		return ancho;
+	}
+	public void setAncho(int ancho) {
+		this.ancho = ancho;
 	}
 
 }

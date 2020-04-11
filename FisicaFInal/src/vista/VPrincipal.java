@@ -29,6 +29,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 	private PanelPlano pPlano;
 	private VMagnitud vMagnitud;
 	private VPosicion vPosicion;
+	private VBienvenido vbien;
 	private int contP = 0, contN = 0;
 	private ArrayList<JButton> btnPositivos;
 	private ArrayList<JButton> btnNegativos;
@@ -58,10 +59,8 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 
 		vMagnitud = new VMagnitud(this);
 		vPosicion = new VPosicion(this);
-
-		pPlano = new PanelPlano(400,460);
+		pPlano = new PanelPlano();
 		pPlano.setBounds(10, 0, 660, 486);
-		pPlano.setVisible(true);
 		add(pPlano);
 
 		iniciarArrays();

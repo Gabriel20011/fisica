@@ -5,11 +5,9 @@ import modelo.CampoElectrico;
 import modelo.Carga;
 import modelo.LeyCoulomb;
 import modelo.Potencial;
-import vista.VBienvenido;
 import vista.VPrincipal;
 public class Controlador {
 
-	private VBienvenido vbien;
 	private LeyCoulomb lc;
 	private CampoElectrico ce;
 	private Carga pivote;
@@ -25,8 +23,7 @@ public class Controlador {
 		ce = new CampoElectrico();
 		pot = new Potencial();
 		vp = new VPrincipal(this);
-		vbien = new VBienvenido();
-		vbien.setVisible(true);
+		vp.setVisible(true);
 		pivote = new Carga();
 	}
 	public Potencial getPot() {

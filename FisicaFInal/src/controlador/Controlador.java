@@ -14,7 +14,7 @@ public class Controlador {
 	private Carga pivote;
 	private Potencial pot;
 	private ArrayList<Carga> cargas;
-	private ArrayList<Carga> cargaSinPivote;
+	
 
 	public Controlador() {
 
@@ -43,6 +43,7 @@ public class Controlador {
 	public Carga buscarCarga(double x, double y) {
 		Carga found = null;
 		for (Carga i : cargas) {
+			System.out.println("Carga x: " + i.getX() + " Carga Y: "+ i.getY());
 			if (i.getX() == x && i.getY() == y) {
 				found = i;
 			}
@@ -50,26 +51,32 @@ public class Controlador {
 		return found;
 	}
 	public ArrayList<Carga> seleccionarPivote() {
-		cargaSinPivote = cargas;
-		cargaSinPivote.remove(pivote);
+		ArrayList<Carga> cargaSinPivote = new ArrayList<Carga>();
+		System.out.println(cargas.size());
+		for (Carga i : cargas) {
+			if (i.getX() != pivote.getX() || i.getY() != pivote.getY()) {
+				cargaSinPivote.add(i);
+			}
+		}
 		return cargaSinPivote;
 	}
 	public void calcularCampo() {
 		seleccionarPivote();
-		ce.vectorCampo(cargaSinPivote, pivote);
+		ce.vectorCampo(seleccionarPivote(), pivote);
 	}
 	
 	public void calcularFuerza() {
 		seleccionarPivote();
-		lc.vectorFuerza(cargaSinPivote, pivote);
+		lc.vectorFuerza(seleccionarPivote(), pivote);
 	}
 	public void vaciar() {
-		cargaSinPivote = new ArrayList<Carga>();
 		cargas = new ArrayList<Carga>();
 		setPivote(null);
 		ce.setCampoI(0);
 		ce.setCampoJ(0);
 	}
+	
+
 
 	public void agregar(Carga carga) {
 		cargas.add(carga);

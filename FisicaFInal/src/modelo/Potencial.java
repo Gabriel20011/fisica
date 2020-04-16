@@ -26,7 +26,7 @@ public class Potencial {
 			cargas.get(i).setR(Math.pow(r, 0.5));
 			total += cargas.get(i).getCarga()/cargas.get(i).getR();
 		}
-		potencial = k*pivote.getCarga()*total;
+		potencial = k*total;
 	}
 	
 	public double getPotencial() {

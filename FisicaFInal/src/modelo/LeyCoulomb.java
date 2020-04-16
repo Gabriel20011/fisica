@@ -12,6 +12,8 @@ public class LeyCoulomb {
 	public void vectorFuerza(ArrayList<Carga> cargas, Carga pivote) {
 		double sumai =0;
 		double sumaj =0;
+		fuerzaI =0;
+		fuerzaJ = 0;
 		for (int i = 0; i < cargas.size(); i++) {
 			if(cargas.get(i).getCarga()>0 && pivote.getCarga()<0 ||
 			cargas.get(i).getCarga()<0 && pivote.getCarga()>0) {

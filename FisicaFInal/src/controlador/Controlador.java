@@ -22,7 +22,7 @@ public class Controlador {
 		lc = new LeyCoulomb();
 		ce = new CampoElectrico();
 		pot = new Potencial();
-		vPrincipal = new VPrincipal(this);
+		vPrincipal = new VPrincipal(this, 0 ,0);
 		vPrincipal.setVisible(true);
 		pivote = new Carga();
 	}
@@ -35,7 +35,6 @@ public class Controlador {
 	public Carga buscarCarga(double x, double y) {
 		Carga found = null;
 		for (Carga i : cargas) {
-			System.out.println("Carga x: " + i.getX() + " Carga Y: "+ i.getY());
 			if (i.getX() == x && i.getY() == y) {
 				found = i;
 			}
@@ -44,7 +43,6 @@ public class Controlador {
 	}
 	public ArrayList<Carga> seleccionarPivote() {
 		ArrayList<Carga> cargaSinPivote = new ArrayList<Carga>();
-		System.out.println(cargas.size());
 		for (Carga i : cargas) {
 			if (i.getX() != pivote.getX() || i.getY() != pivote.getY()) {
 				cargaSinPivote.add(i);

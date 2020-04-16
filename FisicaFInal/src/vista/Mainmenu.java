@@ -37,15 +37,19 @@ public class Mainmenu extends JFrame implements MouseMotionListener, MouseListen
 		add(bigx);
 		
 		x = new JTextField();
+		x.setBounds(80, 150, 150, 30);
+		add(x);
 		
 		bigy = new JLabel("Ingresa una altura para el plano");
 		bigy.setBounds(360, 100, 150, 30);
 		add(bigy);
 		
 		y = new JTextField();
+		y.setBounds(360, 150, 150, 30);
+		add(y);
 		
 		start = new JButton("Ingresar");
-		start.setBounds(80, 155, 150, 50);
+		start.setBounds(220, 195, 150, 50);
 		start.addActionListener( new ActionListener() {
 			@Override
 		    public void actionPerformed(ActionEvent e)
@@ -55,10 +59,7 @@ public class Mainmenu extends JFrame implements MouseMotionListener, MouseListen
 		        a.setVisible(true);
 		    }
 		});
-		
-		
-		add(x);
-		add(y);
+			
 		add(start);
 		
 	}

@@ -34,7 +34,6 @@ public class CampoElectrico {
 		
 		double pivoteX = pivote.getX()/100;
 		double pivoteY = pivote.getY()/100;
-		System.out.println("atrapo");
 		for (int i = 0; i < cargas.size(); i++) {
 			double sumaI = (cargas.get(i).getX()/100)-pivoteX;
 			double sumaJ = (cargas.get(i).getY()/100)-pivoteY;
@@ -48,7 +47,6 @@ public class CampoElectrico {
 
 		double pivoteX = pivote.getX()/100;
 		double pivoteY = pivote.getY()/100;
-		System.out.println("repelo");
 		for (int i = 0; i < cargas.size(); i++) {
 			double sumaI = (cargas.get(i).getX()/100)-pivoteX;
 			double sumaJ = (cargas.get(i).getY()/100)-pivoteY;

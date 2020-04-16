@@ -493,7 +493,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 					c.calcularPotencial();
 
 					double potencial = c.getPot().getPotencial();
-					JOptionPane.showMessageDialog(null, "El resultado es: " + potencial+"J");
+					JOptionPane.showMessageDialog(null, "El resultado es: " + potencial+" V");
 
 				}
 				else {

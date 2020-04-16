@@ -32,14 +32,6 @@ public class Controlador {
 	public void setPot(Potencial pot) {
 		this.pot = pot;
 	}
-	public void convertirMetros() {
-		for (int i = 0; i < cargas.size(); i++) {
-			cargas.get(i).setX(cargas.get(i).getX()/100);
-			cargas.get(i).setY(cargas.get(i).getY()/100);
-		}
-		pivote.setX(pivote.getX()/100);
-		pivote.setY(pivote.getY()/100);
-	}
 	public Carga buscarCarga(double x, double y) {
 		Carga found = null;
 		for (Carga i : cargas) {
@@ -75,9 +67,10 @@ public class Controlador {
 		ce.setCampoI(0);
 		ce.setCampoJ(0);
 	}
-	
-
-
+	public void calcularPotencial() {
+		seleccionarPivote();
+		pot.calcularPotencial(seleccionarPivote(), pivote);
+	}
 	public void agregar(Carga carga) {
 		cargas.add(carga);
 	}

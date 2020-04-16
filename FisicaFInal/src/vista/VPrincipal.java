@@ -33,7 +33,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 	private JMenuItem limpiar, positivo, negativo, punto, calcularPositivo, calcularNegativo, calcularPunto,
 	fuezaPositivo, fuerzaNegativo, calcularpotencial;
 	private JLabel lblPiboteX, lblPiboteY, lblPositivoX, lblPositivoY, lblNegativoX, lblNegativoY;
-	private boolean eventoCalcularP , eventoCalcularN, eventoFuerzaP, eventoFuerzaN;
+	private boolean eventoCalcularP , eventoCalcularN, eventoFuerzaP, eventoFuerzaN, eventoPotencial;
 	private ImageIcon imgPositivos = new ImageIcon("Imagenes/carga positiva.png");
 	private ImageIcon imgNegativos = new ImageIcon("Imagenes/carga negativa.png");
 	private ImageIcon imgPunto = new ImageIcon("Imagenes/punto.png");
@@ -511,6 +511,14 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			}
 
 		}
+		else if(arg0.getActionCommand()== "calcular potencial de uuna carga puntual") {
+			eventoPotencial = true;
+			if(btnNegativos.size()>1 && btnPositivos.size()>1) {
+				JOptionPane.showMessageDialog(null, "Selecione una carga");
+			}else {
+				JOptionPane.showMessageDialog(null, "No hay cargas sobre el plano");
+			}
+		}
 		else if (arg0.getActionCommand() == "Calcular campo a una carga Negativa") {
 
 			eventoCalcularN = true;
@@ -545,7 +553,6 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 
 					c.setPivote(new Carga(1, btnPivote.getLocation().getX()- ORIGENX,
 							ORIGENY - btnPivote.getLocation().getY()));
-					c.convertirMetros();
 					c.calcularCampo();
 
 					double resultadoI = c.getCe().getCampoI();
@@ -613,7 +620,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			Carga pivote = c.buscarCarga(btnNegativos.get(index).getLocation().getX() - ORIGENX,
 					ORIGENY - btnNegativos.get(index).getLocation().getY());
 			c.setPivote(pivote);
-//			c.convertirMetros();
+			//			c.convertirMetros();
 			c.calcularCampo();
 
 			double resultadoI = c.getCe().getCampoI();
@@ -651,11 +658,11 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 					break;
 				}
 			}
-			
+
 			Carga pivote = c.buscarCarga(btnPositivos.get(index).getLocation().getX() - ORIGENX,
 					ORIGENY - btnPositivos.get(index).getLocation().getY());
 			c.setPivote(pivote);
-//			c.convertirMetros();
+			//			c.convertirMetros();
 			c.calcularCampo();
 
 			double resultadoI = c.getCe().getCampoI();
@@ -726,7 +733,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			Carga pivote = c.buscarCarga(btnPositivos.get(index).getLocation().getX() - ORIGENX,
 					ORIGENY - btnPositivos.get(index).getLocation().getY());
 			c.setPivote(pivote);
-//			c.convertirMetros();
+			//			c.convertirMetros();
 			c.calcularFuerza();
 
 			double resultadoI = c.getLc().getFuerzaI();
@@ -749,7 +756,33 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			btnPivote.setEnabled(true);
 			dibujarVector(btnNegativos.get(index));
 			index = 0;
+		}
+		else if (eventoPotencial == true) {
+			eventoPotencial = false;
+			int index;
+			for (index = 0 ; index < btnPositivos.size() - 1 ; index++) {
+				if (btnPositivos.get(index).equals(arg0.getSource())) {
+					break;
+				}
+			}
+			Carga pivote = c.buscarCarga(btnPositivos.get(index).getLocation().getX() - ORIGENX,
+					ORIGENY - btnPositivos.get(index).getLocation().getY());
+			c.setPivote(pivote);
+			c.calcularPotencial();
+
+			double potencial = c.getPot().getPotencial();
+			JOptionPane.showMessageDialog(null, "El resultado es: " + potencial+"J");
+		for (int i = 0; i < btnPositivos.size(); i++) {
+			btnPositivos.get(i).setEnabled(true);
 
 		}
+		for (int i = 0 ; i < btnNegativos.size() ; i++) {
+			btnNegativos.get(i).setEnabled(true);
+		}
+		btnPivote.setEnabled(true);
+		dibujarVector(btnNegativos.get(index));
+		index = 0;
+	}
 	}
 }
+

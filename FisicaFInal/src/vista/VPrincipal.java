@@ -170,13 +170,13 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		btnPositivos = new ArrayList<JButton>();
 
 	}
-	
+
 	public void dibujarVector(Point vector) {
 		vVector = new vVector(vector);
 		vVector.setSize(400, 335);
 		vVector.setVisible(true);
 	}
-	
+
 	public void limpiar() {
 		for (int j = btnPositivos.size() - 1; j > -1; j--) {
 			btnPositivos.get(j).setVisible(false);
@@ -482,12 +482,16 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			}
 
 		}
-		else if(arg0.getActionCommand()== "calcular potencial de una carga puntual") {
-			eventoPotencial = true;
-			if(btnNegativos.size()>1 && btnPositivos.size()>1) {
+		else if(arg0.getActionCommand()== "calcular potencial de uuna carga puntual") {
+			
+			if(c.getCargas().size() > 1) {
 				JOptionPane.showMessageDialog(null, "Selecione una carga");
+				btnNegativos.get(btnNegativos.size() - 1).setEnabled(false);
+				btnPositivos.get(btnPositivos.size() - 1).setEnabled(false);
+				
+				eventoPotencial = true;
 			}else {
-				JOptionPane.showMessageDialog(null, "No hay cargas sobre el plano");
+				JOptionPane.showMessageDialog(null, "No hay cargas suficieintes sobre el plano");
 			}
 		}
 		else if (arg0.getActionCommand() == "Calcular campo a una carga Negativa") {
@@ -723,27 +727,37 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		}
 		else if (eventoPotencial == true) {
 			eventoPotencial = false;
-			int index;
-			for (index = 0 ; index < btnPositivos.size() - 1 ; index++) {
-				if (btnPositivos.get(index).equals(arg0.getSource())) {
+			int indexP = 0;
+			int indexN = 0;
+			for (indexP = 0 ; indexP < btnPositivos.size() ; indexP++) {
+				if (btnPositivos.get(indexP).equals(arg0.getSource())) {
 					break;
 				}
 			}
-			Carga pivote = c.buscarCarga(btnPositivos.get(index).getLocation().getX() - ORIGENX,
-					ORIGENY - btnPositivos.get(index).getLocation().getY());
+			for (indexN = 0 ; indexN < btnNegativos.size() ; indexN++) {
+				if (btnNegativos.get(indexN).equals(arg0.getSource())) {
+					break;
+				}
+			}
+			Carga pivote;
+			if (indexP < btnPositivos.size()-1) {
+				pivote = c.buscarCarga(btnPositivos.get(indexP).getLocation().getX() - ORIGENX,
+						ORIGENY - btnPositivos.get(indexP).getLocation().getY());
+			}
+			else{
+				pivote = c.buscarCarga(btnNegativos.get(indexN).getLocation().getX() - ORIGENX,
+						ORIGENY - btnNegativos.get(indexN).getLocation().getY());
+			}
 			c.setPivote(pivote);
 			c.calcularPotencial();
 
 			double potencial = c.getPot().getPotencial();
 			JOptionPane.showMessageDialog(null, "El resultado es: " + potencial+"J");
-		for (int i = 0; i < btnPositivos.size(); i++) {
-			btnPositivos.get(i).setEnabled(true);
+			
+			btnNegativos.get(btnNegativos.size() - 1).setEnabled(true);
+			btnPositivos.get(btnPositivos.size() - 1).setEnabled(true);
 
 		}
-		for (int i = 0 ; i < btnNegativos.size() ; i++) {
-			btnNegativos.get(i).setEnabled(true);
-		}
-	}
 	}
 }
 

@@ -43,7 +43,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 
 
 
-	public VPrincipal (Controlador c) {
+	public VPrincipal (Controlador c, int altura, int anchura) {
 		super("Fisica");
 		this.c = c;
 		ORIGENX = 215;

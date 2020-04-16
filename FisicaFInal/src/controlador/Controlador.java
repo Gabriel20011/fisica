@@ -22,7 +22,7 @@ public class Controlador {
 		lc = new LeyCoulomb();
 		ce = new CampoElectrico();
 		pot = new Potencial();
-		vPrincipal = new VPrincipal(this);
+		vPrincipal = new VPrincipal(this, 0 ,0);
 		vPrincipal.setVisible(true);
 		pivote = new Carga();
 	}

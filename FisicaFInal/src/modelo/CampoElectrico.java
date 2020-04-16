@@ -16,6 +16,8 @@ public class CampoElectrico {
 		return a;
 	}
 	public void vectorCampo(ArrayList<Carga> cargas, Carga pivote) {
+		campoI=0;
+		campoJ=0;
 		for (int i = 0; i < cargas.size(); i++) {
 			if(cargas.get(i).getCarga()>0 && pivote.getCarga()<0 ||
 			cargas.get(i).getCarga()<0 && pivote.getCarga()>0) {
@@ -23,14 +25,19 @@ public class CampoElectrico {
 			}else{
 				unitarioRepulsion(cargas, pivote);
 			}
+			System.out.println(cargas.get(i).getUnitarioI());
 			campoI += campoPunto(i,cargas, pivote)*cargas.get(i).getUnitarioI();
 			campoJ += campoPunto(i,cargas, pivote)*cargas.get(i).getUnitarioJ();
 		}
 	}	
 	public void unitarioAtracion(ArrayList<Carga> cargas, Carga pivote) {
+		
+		double pivoteX = pivote.getX()/100;
+		double pivoteY = pivote.getY()/100;
+		System.out.println("atrapo");
 		for (int i = 0; i < cargas.size(); i++) {
-			double sumaI = (cargas.get(i).getX()/100)-(pivote.getX()/100);
-			double sumaJ = (cargas.get(i).getY()/100)-(pivote.getY()/100);
+			double sumaI = (cargas.get(i).getX()/100)-pivoteX;
+			double sumaJ = (cargas.get(i).getY()/100)-pivoteY;
 			double r = Math.pow(sumaI, 2) + Math.pow(sumaJ, 2);
 			cargas.get(i).setR(Math.pow(r, 0.5));
 			cargas.get(i).setUnitarioI(sumaI/Math.pow(r, 0.5));
@@ -38,13 +45,18 @@ public class CampoElectrico {
 		}
 	}
 	public void unitarioRepulsion(ArrayList<Carga> cargas, Carga pivote) {
+
+		double pivoteX = pivote.getX()/100;
+		double pivoteY = pivote.getY()/100;
+		System.out.println("repelo");
 		for (int i = 0; i < cargas.size(); i++) {
-			double sumaI = (cargas.get(i).getX()/100)-(pivote.getX()/100);
-			double sumaJ = (cargas.get(i).getY()/100)-(pivote.getY()/100);
+			double sumaI = (cargas.get(i).getX()/100)-pivoteX;
+			double sumaJ = (cargas.get(i).getY()/100)-pivoteY;
 			double r = Math.pow(sumaI, 2) + Math.pow(sumaJ, 2);
-			cargas.get(i).setR(Math.pow(sumaI, 2) + Math.pow(sumaJ, 2));
+			cargas.get(i).setR(Math.pow(r, 0.5));
 			cargas.get(i).setUnitarioI(sumaI/Math.pow(r, 0.5)*-1);
 			cargas.get(i).setUnitarioJ(sumaJ/Math.pow(r, 0.5)*-1);
+			
 		}
 	}
 

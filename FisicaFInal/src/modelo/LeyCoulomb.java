@@ -12,6 +12,8 @@ public class LeyCoulomb {
 	public void vectorFuerza(ArrayList<Carga> cargas, Carga pivote) {
 		double sumai =0;
 		double sumaj =0;
+		fuerzaI =0;
+		fuerzaJ = 0;
 		for (int i = 0; i < cargas.size(); i++) {
 			if(cargas.get(i).getCarga()>0 && pivote.getCarga()<0 ||
 			cargas.get(i).getCarga()<0 && pivote.getCarga()>0) {
@@ -33,9 +35,11 @@ public class LeyCoulomb {
 		return a;
 	}
 	public void unitarioAtracion(ArrayList<Carga> cargas, Carga pivote) {
+		double pivoteX = pivote.getX()/100;
+		double pivoteY = pivote.getY()/100;
 		for (int i = 0; i < cargas.size(); i++) {
-			double sumaI = (cargas.get(i).getX()/100)-(pivote.getX()/100);
-			double sumaJ = (cargas.get(i).getY()/100)-(pivote.getY()/100);
+			double sumaI = (cargas.get(i).getX()/100)-pivoteX;
+			double sumaJ = (cargas.get(i).getY()/100)-pivoteY;
 			double r = Math.pow(sumaI, 2) + Math.pow(sumaJ, 2);
 			cargas.get(i).setR(Math.pow(r, 0.5));
 			cargas.get(i).setUnitarioI(sumaI/Math.pow(r, 0.5));
@@ -43,9 +47,11 @@ public class LeyCoulomb {
 		}
 	}
 	public void unitarioRepulsion(ArrayList<Carga> cargas, Carga pivote) {
+		double pivoteX = pivote.getX()/100;
+		double pivoteY = pivote.getY()/100;
 		for (int i = 0; i < cargas.size(); i++) {
-			double sumaI = (cargas.get(i).getX()/100)-(pivote.getX()/100);
-			double sumaJ = (cargas.get(i).getY()/100)-(pivote.getY()/100);
+			double sumaI = (cargas.get(i).getX()/100)-pivoteX;
+			double sumaJ = (cargas.get(i).getY()/100)-pivoteY;
 			double r = Math.pow(sumaI, 2) + Math.pow(sumaJ, 2);
 			cargas.get(i).setR(Math.pow(sumaI, 2) + Math.pow(sumaJ, 2));
 			cargas.get(i).setUnitarioI(sumaI/Math.pow(r, 0.5)*-1);

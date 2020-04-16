@@ -754,7 +754,8 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			double potencial = c.getPot().getPotencial();
 			JOptionPane.showMessageDialog(null, "El resultado es: " + potencial+"J");
 			
-			
+			btnNegativos.get(btnNegativos.size() - 1).setEnabled(true);
+			btnPositivos.get(btnPositivos.size() - 1).setEnabled(true);
 
 		}
 	}

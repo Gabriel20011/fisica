@@ -9,8 +9,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-
-import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,10 +17,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-
 import controlador.Controlador;
 import modelo.Carga;
-
 
 public class VPrincipal extends JFrame implements MouseMotionListener, MouseListener, ActionListener {
 
@@ -36,7 +32,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 	private JButton btnPivote;
 	private JMenuBar menu;
 	private JMenuItem limpiar, positivo, negativo, punto, calcularPositivo, calcularNegativo, calcularPunto,
-	fuezaPositivo, fuerzaNegativo;
+	fuezaPositivo, fuerzaNegativo, calcularpotencial;
 	private vVector vVector;
 	private JLabel lblPiboteX, lblPiboteY, lblPositivoX, lblPositivoY, lblNegativoX, lblNegativoY;
 	private boolean eventoCalcularP , eventoCalcularN, eventoFuerzaP, eventoFuerzaN;
@@ -149,6 +145,8 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		calcularNegativo.addActionListener(this);
 		calcularPunto = new JMenuItem("Calcular campo al Punto");
 		calcularPunto.addActionListener(this);
+		calcularpotencial = new JMenuItem("calcular potencial de uuna carga puntual");
+		calcularpotencial.addActionListener(this);
 		opciones.add(limpiar);
 		opciones.add(positivo);
 		opciones.add(negativo);
@@ -158,6 +156,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		campoTools.add(calcularPunto);
 		fuerzaTools.add(fuezaPositivo);
 		fuerzaTools.add(fuerzaNegativo);
+		potencial.add(calcularpotencial);
 		menu.add(opciones);
 		menu.add(campoTools);
 		menu.add(fuerzaTools);

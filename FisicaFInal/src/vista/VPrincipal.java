@@ -482,7 +482,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			}
 
 		}
-		else if(arg0.getActionCommand()== "calcular potencial de uuna carga puntual") {
+		else if(arg0.getActionCommand()== "calcular potencial de una carga puntual") {
 			eventoPotencial = true;
 			if(btnNegativos.size()>1 && btnPositivos.size()>1) {
 				JOptionPane.showMessageDialog(null, "Selecione una carga");

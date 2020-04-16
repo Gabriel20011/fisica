@@ -145,7 +145,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		calcularNegativo.addActionListener(this);
 		calcularPunto = new JMenuItem("Calcular campo al Punto");
 		calcularPunto.addActionListener(this);
-		calcularpotencial = new JMenuItem("calcular potencial de uuna carga puntual");
+		calcularpotencial = new JMenuItem("calcular potencial de una carga puntual");
 		calcularpotencial.addActionListener(this);
 		opciones.add(limpiar);
 		opciones.add(positivo);
@@ -482,7 +482,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			}
 
 		}
-		else if(arg0.getActionCommand()== "calcular potencial de uuna carga puntual") {
+		else if(arg0.getActionCommand()== "calcular potencial de una carga puntual") {
 			
 			if(c.getCargas().size() > 1) {
 				JOptionPane.showMessageDialog(null, "Selecione una carga");

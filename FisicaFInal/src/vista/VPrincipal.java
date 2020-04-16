@@ -395,7 +395,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			if (carga != 5000) {
 				int x = (int) btnNegativos.get(contN - 1).getLocation().getX() - ORIGENX;
 				int y =  ORIGENY - (int) btnNegativos.get(contN - 1).getLocation().getY();
-				c.agregar(new Carga(carga, x, y));
+				c.agregar(new Carga(carga*-1, x, y));
 
 				JOptionPane.showMessageDialog(null, "La carga fue ingresada con exito");
 				vMagnitud.setVisible(false);

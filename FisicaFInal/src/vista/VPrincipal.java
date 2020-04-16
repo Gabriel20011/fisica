@@ -1,7 +1,6 @@
 package vista;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,7 +48,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		ORIGENX = (anchura/2) - 15;
 		ORIGENY = (altura/2) - 25;
 		setSize(anchura + 300, altura + 50);
-		
+
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -484,14 +483,18 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 
 		}
 		else if(arg0.getActionCommand()== "calcular potencial de uuna carga puntual") {
-			
-			if(c.getCargas().size() > 1) {
-				if (verificarArea(btnPivote)) {
-					JOptionPane.showMessageDialog(null, "Selecione una carga");
-					btnNegativos.get(btnNegativos.size() - 1).setEnabled(false);
-					btnPositivos.get(btnPositivos.size() - 1).setEnabled(false);
-					
+
+			if(c.getCargas().size() > 0) {
+				if (verificarArea(btnPivote)) {					
 					eventoPotencial = true;
+					Carga pivote = new Carga(1, btnPivote.getLocation().getX() - ORIGENX,
+							ORIGENY - btnPivote.getLocation().getY());
+					c.setPivote(pivote);
+					c.calcularPotencial();
+
+					double potencial = c.getPot().getPotencial();
+					JOptionPane.showMessageDialog(null, "El resultado es: " + potencial+"J");
+
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Ingrese un punto sobre el plano ");
@@ -732,39 +735,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			dibujarVector(btnPositivos.get(index).getLocation());
 			index = 0;
 		}
-		else if (eventoPotencial == true) {
-			eventoPotencial = false;
-			int indexP = 0;
-			int indexN = 0;
-			for (indexP = 0 ; indexP < btnPositivos.size() ; indexP++) {
-				if (btnPositivos.get(indexP).equals(arg0.getSource())) {
-					break;
-				}
-			}
-			for (indexN = 0 ; indexN < btnNegativos.size() ; indexN++) {
-				if (btnNegativos.get(indexN).equals(arg0.getSource())) {
-					break;
-				}
-			}
-			Carga pivote;
-			if (indexP < btnPositivos.size()-1) {
-				pivote = c.buscarCarga(btnPositivos.get(indexP).getLocation().getX() - ORIGENX,
-						ORIGENY - btnPositivos.get(indexP).getLocation().getY());
-			}
-			else{
-				pivote = c.buscarCarga(btnNegativos.get(indexN).getLocation().getX() - ORIGENX,
-						ORIGENY - btnNegativos.get(indexN).getLocation().getY());
-			}
-			c.setPivote(pivote);
-			c.calcularPotencial();
 
-			double potencial = c.getPot().getPotencial();
-			JOptionPane.showMessageDialog(null, "El resultado es: " + potencial+"J");
-			
-			btnNegativos.get(btnNegativos.size() - 1).setEnabled(true);
-			btnPositivos.get(btnPositivos.size() - 1).setEnabled(true);
-
-		}
 	}
 }
 // Sofi <3

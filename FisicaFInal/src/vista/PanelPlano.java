@@ -26,8 +26,26 @@ public class PanelPlano extends JPanel {
 	public void paintComponent(Graphics g)
 	{
 		dibujar((Graphics2D) g);
-	}
 
+
+	}
+	public void graficarPuntos(Point inicio, Point fin) {
+		int inicioX = inicio.x;
+		int inicioY = inicio.y;
+		int finX = fin.x;
+		int finY = fin.y;
+		((Graphics2D)this.getGraphics()).setColor(Color.BLUE);
+		((Graphics2D)this.getGraphics()).drawLine(inicioX, inicioY, finX, finY);
+		paint(this.getGraphics());
+		
+	}
+	public void graficarUnitario(Point inicio, Point fin) {
+		((Graphics2D)this.getGraphics()).setColor(Color.BLUE);
+		((Graphics2D)this.getGraphics()).setStroke(new BasicStroke(10));
+		this.getGraphics().drawLine(inicio.x, inicio.y, fin.x, fin.y);
+		paint(this.getGraphics());
+		
+	}
 
 	public void dibujar(Graphics2D g){
 

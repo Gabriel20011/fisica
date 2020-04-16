@@ -3,11 +3,14 @@ package vista;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import controlador.Controlador;
 
@@ -16,10 +19,11 @@ public class Mainmenu extends JFrame implements MouseMotionListener, MouseListen
 	private static final long serialVersionUID = 1L;
 	
 	private JButton start;
-	
+	private JTextField x;
+	private JTextField y;
+	private JLabel bigx;
+	private JLabel bigy;
 	private VPrincipal a;
-	
-	private ActionListener q;
 	
 	public Mainmenu (Controlador q) {
 		setSize(660, 510);
@@ -27,11 +31,35 @@ public class Mainmenu extends JFrame implements MouseMotionListener, MouseListen
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		getContentPane().setBackground(Color.white);
-		start = new JButton("Aceptar");
+		
+		bigx = new JLabel("Ingresa un ancho para el plano");
+		bigx.setBounds(80, 100, 150, 30);
+		add(bigx);
+		
+		x = new JTextField();
+		
+		bigy = new JLabel("Ingresa una altura para el plano");
+		bigy.setBounds(360, 100, 150, 30);
+		add(bigy);
+		
+		y = new JTextField();
+		
+		start = new JButton("Ingresar");
 		start.setBounds(80, 155, 150, 50);
-		start.addActionListener();
+		start.addActionListener( new ActionListener() {
+			@Override
+		    public void actionPerformed(ActionEvent e)
+		    {
+				dispose();
+				a = new VPrincipal(q);
+		        a.setVisible(true);
+		    }
+		});
+		
+		
+		add(x);
+		add(y);
 		add(start);
-		a = new VPrincipal(q);
 		
 	}
 
@@ -42,8 +70,54 @@ public class Mainmenu extends JFrame implements MouseMotionListener, MouseListen
 	public void setA(VPrincipal a) {
 		this.a = a;
 	}
-	
-	public void actionPerformed(ActionEvent arg0) {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }

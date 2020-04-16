@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,6 +37,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 	private JMenuBar menu;
 	private JMenuItem limpiar, positivo, negativo, punto, calcularPositivo, calcularNegativo, calcularPunto,
 	fuezaPositivo, fuerzaNegativo;
+	private vVector vVector;
 	private JLabel lblPiboteX, lblPiboteY, lblPositivoX, lblPositivoY, lblNegativoX, lblNegativoY;
 	private boolean eventoCalcularP , eventoCalcularN, eventoFuerzaP, eventoFuerzaN;
 	private ImageIcon imgPositivos = new ImageIcon("Imagenes/carga positiva.png");
@@ -128,7 +130,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		JMenu campoTools = new JMenu("Campo");
 		JMenu opciones = new JMenu("Opciones");
 		JMenu fuerzaTools = new JMenu("Fuerza");
-		JMenu potencial = new JMenu("potencial");
+		JMenu potencial = new JMenu("Potencial");
 		limpiar = new JMenuItem("Limpiar");
 		limpiar.addActionListener(this);
 		positivo = new JMenuItem("Ingresar carga positiva");
@@ -169,44 +171,13 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		btnPositivos = new ArrayList<JButton>();
 
 	}
-	// para graficar el vector unitario no se puede con las cargas del controlador, toca con las posicicones de los botones
-	public void dibujarVector(JButton unitario) {
-		Point puntoInicio, puntoFin;
-		for (JButton i : btnNegativos ) {
-			if (i.getLocation().x != unitario.getLocation().x
-					&& i.getLocation().y != unitario.getLocation().y) {
-				if (verificarArea(i)) {
-					puntoInicio = new Point(i.getLocation().x + 25 , i.getLocation().y + 25);
-					puntoFin = new Point(unitario.getLocation().x + 25 , unitario.getLocation().y + 25);
-					pPlano.graficarPuntos(puntoInicio, puntoFin);
-				}
-			}
-			else {
-				int Juanito1 =(int) c.getPivote().getUniI() * 10;
-				int Juanito2 =(int) c.getPivote().getUniJ() * 10;
-				puntoFin = new Point(Juanito1+ 25,Juanito2 + 25);
-				puntoInicio = new Point(unitario.getLocation().x + 25 , unitario.getLocation().y + 25);
-				pPlano.graficarUnitario(puntoInicio, puntoFin);
-			}
-		}
-		for (JButton i : btnPositivos ) {
-			if (i.getLocation().x != unitario.getLocation().x
-					&& i.getLocation().y != unitario.getLocation().y) {		
-				if (verificarArea(i)) {
-					puntoInicio = new Point(i.getLocation().x + 25 , i.getLocation().y + 25);
-					puntoFin = new Point(unitario.getLocation().x + 25 , unitario.getLocation().y + 25);
-					pPlano.graficarPuntos(puntoInicio, puntoFin);
-				}
-			}
-			else {
-				int Juanito1 =(int) c.getPivote().getUniI() * 10;
-				int Juanito2 =(int) c.getPivote().getUniJ() * 10;
-				puntoFin = new Point((int)c.getPivote().getUniI(),(int) c.getPivote().getUniJ());
-				puntoInicio = new Point(unitario.getLocation().x + 25 , unitario.getLocation().y + 25);
-				pPlano.graficarUnitario(puntoInicio, puntoFin);
-			}
-		}
+	
+	public void dibujarVector(Point vector) {
+		vVector = new vVector(vector);
+		vVector.setSize(400, 335);
+		vVector.setVisible(true);
 	}
+	
 	public void limpiar() {
 		for (int j = btnPositivos.size() - 1; j > -1; j--) {
 			btnPositivos.get(j).setVisible(false);
@@ -546,7 +517,6 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 
 					c.setPivote(new Carga(1, btnPivote.getLocation().getX()- ORIGENX,
 							ORIGENY - btnPivote.getLocation().getY()));
-					c.convertirMetros();
 					c.calcularCampo();
 
 					double resultadoI = c.getCe().getCampoI();
@@ -614,7 +584,6 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			Carga pivote = c.buscarCarga(btnNegativos.get(index).getLocation().getX() - ORIGENX,
 					ORIGENY - btnNegativos.get(index).getLocation().getY());
 			c.setPivote(pivote);
-//			c.convertirMetros();
 			c.calcularCampo();
 
 			double resultadoI = c.getCe().getCampoI();
@@ -637,11 +606,8 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 				btnNegativos.get(i).setEnabled(true);
 			}
 			btnPivote.setEnabled(true);
-			dibujarVector(btnNegativos.get(index));
+			dibujarVector(btnNegativos.get(index).getLocation());
 			index = 0;
-			// Si limpio ahora entonces no se vera el campo
-			//			limpiar();
-			//			repaint();
 			eventoCalcularN = false;
 
 		}
@@ -656,7 +622,6 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			Carga pivote = c.buscarCarga(btnPositivos.get(index).getLocation().getX() - ORIGENX,
 					ORIGENY - btnPositivos.get(index).getLocation().getY());
 			c.setPivote(pivote);
-//			c.convertirMetros();
 			c.calcularCampo();
 
 			double resultadoI = c.getCe().getCampoI();
@@ -677,7 +642,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			}
 
 			btnPivote.setEnabled(true);
-			dibujarVector(btnPositivos.get(index));
+			dibujarVector(btnPositivos.get(index).getLocation());
 			index = 0;
 			eventoCalcularP = false;
 		}
@@ -713,8 +678,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 				btnNegativos.get(i).setEnabled(true);
 			}
 			btnPivote.setEnabled(true);
-			dibujarVector(btnNegativos.get(index));
-			index = 0;
+			dibujarVector(btnNegativos.get(index).getLocation());
 		}
 		else if (eventoFuerzaP == true) {
 			eventoFuerzaP = false;
@@ -727,7 +691,6 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			Carga pivote = c.buscarCarga(btnPositivos.get(index).getLocation().getX() - ORIGENX,
 					ORIGENY - btnPositivos.get(index).getLocation().getY());
 			c.setPivote(pivote);
-//			c.convertirMetros();
 			c.calcularFuerza();
 
 			double resultadoI = c.getLc().getFuerzaI();
@@ -748,9 +711,8 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 				btnNegativos.get(i).setEnabled(true);
 			}
 			btnPivote.setEnabled(true);
-			dibujarVector(btnNegativos.get(index));
+			dibujarVector(btnPositivos.get(index).getLocation());
 			index = 0;
-
 		}
 	}
 }

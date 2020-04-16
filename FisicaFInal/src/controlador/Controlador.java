@@ -32,18 +32,10 @@ public class Controlador {
 	public void setPot(Potencial pot) {
 		this.pot = pot;
 	}
-	public void convertirMetros() {
-		for (int i = 0; i < cargas.size(); i++) {
-			cargas.get(i).setX(cargas.get(i).getX()/100);
-			cargas.get(i).setY(cargas.get(i).getY()/100);
-		}
-		pivote.setX(pivote.getX()/100);
-		pivote.setY(pivote.getY()/100);
-	}
+
 	public Carga buscarCarga(double x, double y) {
 		Carga found = null;
 		for (Carga i : cargas) {
-			System.out.println("Carga x: " + i.getX() + " Carga Y: "+ i.getY());
 			if (i.getX() == x && i.getY() == y) {
 				found = i;
 			}
@@ -52,7 +44,6 @@ public class Controlador {
 	}
 	public ArrayList<Carga> seleccionarPivote() {
 		ArrayList<Carga> cargaSinPivote = new ArrayList<Carga>();
-		System.out.println(cargas.size());
 		for (Carga i : cargas) {
 			if (i.getX() != pivote.getX() || i.getY() != pivote.getY()) {
 				cargaSinPivote.add(i);

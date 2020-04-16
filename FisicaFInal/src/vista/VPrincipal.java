@@ -207,14 +207,14 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		btnPositivos.get(0).setBorderPainted(false);
 		btnPositivos.get(0).addActionListener(this);
 		btnPositivos.get(0).addMouseMotionListener(this);
-		btnPositivos.get(0).setBounds((ORIGENX * 2) + 140, 50, 50, 50);
+		btnPositivos.get(0).setBounds((ORIGENX * 2) + 80, 50, 50, 50);
 
 		btnNegativos.add(new JButton(imgNegativos));
 		btnNegativos.get(0).setActionCommand("Negativo");
 		btnNegativos.get(0).addMouseListener(this);
 		btnNegativos.get(0).setBorderPainted(false);
 		btnNegativos.get(0).addActionListener(this);
-		btnNegativos.get(0).setBounds((ORIGENX * 2) + 140, 150, 50, 50);
+		btnNegativos.get(0).setBounds((ORIGENX * 2) + 80, 150, 50, 50);
 		btnNegativos.get(0).addMouseMotionListener(this);
 
 		add(btnNegativos.get(0));
@@ -320,7 +320,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 				btnNegativos.get(contN).setBorderPainted(false);
 				btnNegativos.get(contN).addMouseListener(this);
 				btnNegativos.get(contN).addMouseMotionListener(this);
-				btnNegativos.get(contN).setBounds((ORIGENX * 2) + 140, 150, 50, 50);
+				btnNegativos.get(contN).setBounds((ORIGENX * 2) + 80, 150, 50, 50);
 				add(btnNegativos.get(contN));
 				repaint();
 				vMagnitud.getBtnAceptar().setActionCommand("AceptarMagnitudNegativo");
@@ -343,7 +343,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 				btnPositivos.get(contP).setBorderPainted(false);
 				btnPositivos.get(contP).addMouseListener(this);
 				btnPositivos.get(contP).addMouseMotionListener(this);
-				btnPositivos.get(contP).setBounds((ORIGENX * 2) + 140, 50, 50, 50);
+				btnPositivos.get(contP).setBounds((ORIGENX * 2) + 80, 50, 50, 50);
 				add(btnPositivos.get(contP));
 				repaint();
 				vMagnitud.getBtnAceptar().setActionCommand("AceptarMagnitudPositivo");

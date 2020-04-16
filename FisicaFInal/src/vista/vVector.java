@@ -31,6 +31,5 @@ public class vVector extends JFrame {
 	public panelVector getpVector() {
 		return pVector;
 	}
-	
 
 }

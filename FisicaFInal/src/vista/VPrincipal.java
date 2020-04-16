@@ -43,12 +43,13 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 
 
 
-	public VPrincipal (Controlador c, int altura, int anchura) {
+	public VPrincipal (Controlador c, int anchura, int altura) {
 		super("Fisica");
 		this.c = c;
-		ORIGENX = 215;
-		ORIGENY = 205;
-		setSize(660, 510);
+		ORIGENX = (anchura/2) - 15;
+		ORIGENY = (altura/2) - 25;
+		setSize(anchura + 300, altura + 50);
+		
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -57,8 +58,8 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		vMagnitud = new VMagnitud(this);
 		vPosicion = new VPosicion(this);
 
-		pPlano = new PanelPlano(400,460);
-		pPlano.setBounds(10, 0, 660, 486);
+		pPlano = new PanelPlano(anchura, altura);
+		pPlano.setBounds(10, 0, anchura + 10, altura + 10);
 		pPlano.setVisible(true);
 		add(pPlano);
 
@@ -67,7 +68,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		btnPositivos.add(new JButton(imgPositivos));
 		btnPositivos.get(0).setActionCommand("Positivo");
 		btnPositivos.get(0).setBorderPainted(false);
-		btnPositivos.get(0).setBounds(500, 50, 50, 50);
+		btnPositivos.get(0).setBounds((ORIGENX * 2) + 80, 50, 50, 50);
 		btnPositivos.get(0).addActionListener(this);
 		btnPositivos.get(0).addMouseMotionListener(this);
 		btnPositivos.get(0).addMouseListener(this);
@@ -76,7 +77,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		btnNegativos.add(new JButton(imgNegativos));
 		btnNegativos.get(0).setActionCommand("Negativo");
 		btnNegativos.get(0).setBorderPainted(false);
-		btnNegativos.get(0).setBounds(500, 150, 50, 50);
+		btnNegativos.get(0).setBounds((ORIGENX * 2) + 80, 150, 50, 50);
 		btnNegativos.get(0).addActionListener(this);
 		btnNegativos.get(0).addMouseMotionListener(this);
 		btnNegativos.get(0).addMouseListener(this);
@@ -84,32 +85,32 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 
 
 		lblNegativoX = new JLabel("x : 0 , 0 cm");
-		lblNegativoX.setBounds(570, 150, 100, 20);
+		lblNegativoX.setBounds((ORIGENX * 2) + 140, 150, 100, 20);
 		add(lblNegativoX);
 
 		lblNegativoY = new JLabel("y : 0 , 0 cm");
-		lblNegativoY.setBounds(570, 170, 100, 20);
+		lblNegativoY.setBounds((ORIGENX * 2) + 140, 170, 100, 20);
 		add(lblNegativoY);
 
 		lblPositivoX = new JLabel("x : 0 , 0 cm");
-		lblPositivoX.setBounds(570, 50, 100, 20);
+		lblPositivoX.setBounds((ORIGENX * 2) + 140, 50, 100, 20);
 		add(lblPositivoX);
 
 		lblPositivoY= new JLabel("y : 0 , 0 cm");
-		lblPositivoY.setBounds(570, 70, 100, 20);
+		lblPositivoY.setBounds((ORIGENX * 2) + 140, 70, 100, 20);
 		add(lblPositivoY);
 
 		lblPiboteX = new JLabel("x : 0 , 0 cm");
-		lblPiboteX.setBounds(570, 250, 100, 20);
+		lblPiboteX.setBounds((ORIGENX * 2) + 140, 250, 100, 20);
 		add(lblPiboteX);
 
 		lblPiboteY = new JLabel("y : 0 , 0 cm");
-		lblPiboteY.setBounds(570, 270, 100, 20);
+		lblPiboteY.setBounds((ORIGENX * 2) + 140, 270, 100, 20);
 		add(lblPiboteY);
 
 
 		btnPivote = new JButton(imgPunto);
-		btnPivote.setBounds(500, 250, 50, 50);
+		btnPivote.setBounds((ORIGENX * 2) + 80, 250, 50, 50);
 		btnPivote.setBorderPainted(false);
 		btnPivote.addMouseMotionListener(this);
 		btnPivote.addMouseListener(this);
@@ -196,7 +197,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		lblPositivoX.setText("x : 0 , 0 cm");
 		lblPositivoY.setText("y : 0 , 0 cm");
 
-		btnPivote.setLocation(500, 250);
+		btnPivote.setLocation((ORIGENX * 2) + 80, 250);
 
 		btnNegativos = new ArrayList<JButton>();
 		btnPositivos = new ArrayList<JButton>();
@@ -207,14 +208,14 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		btnPositivos.get(0).setBorderPainted(false);
 		btnPositivos.get(0).addActionListener(this);
 		btnPositivos.get(0).addMouseMotionListener(this);
-		btnPositivos.get(0).setBounds(500, 50, 50, 50);
+		btnPositivos.get(0).setBounds((ORIGENX * 2) + 140, 50, 50, 50);
 
 		btnNegativos.add(new JButton(imgNegativos));
 		btnNegativos.get(0).setActionCommand("Negativo");
 		btnNegativos.get(0).addMouseListener(this);
 		btnNegativos.get(0).setBorderPainted(false);
 		btnNegativos.get(0).addActionListener(this);
-		btnNegativos.get(0).setBounds(500, 150, 50, 50);
+		btnNegativos.get(0).setBounds((ORIGENX * 2) + 140, 150, 50, 50);
 		btnNegativos.get(0).addMouseMotionListener(this);
 
 		add(btnNegativos.get(0));
@@ -269,7 +270,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 	}
 	public boolean verificarArea(JButton but) {
 		boolean hola = false;
-		if (but.getLocation().x <= 420 && but.getLocation().y <= 410
+		if (but.getLocation().x <= ORIGENX*2 && but.getLocation().y <= ORIGENY*2
 				&& but.getLocation().x >= 10 && but.getLocation().y >= 0) {
 			hola =true;
 		}
@@ -305,7 +306,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 	public void mouseReleased(MouseEvent arg0) {
 		if (arg0.getSource().equals(btnNegativos.get(contN))) {
 			if (!verificarArea(btnNegativos.get(contN))) {
-				btnNegativos.get(contN).setLocation(500, 150);
+				btnNegativos.get(contN).setLocation((ORIGENX * 2) + 80, 150);
 				lblNegativoX.setText("x : 0 , 0 cm");
 				lblNegativoY.setText("x : 0 , 0 cm");
 				btnNegativos.get(contN).repaint();
@@ -320,7 +321,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 				btnNegativos.get(contN).setBorderPainted(false);
 				btnNegativos.get(contN).addMouseListener(this);
 				btnNegativos.get(contN).addMouseMotionListener(this);
-				btnNegativos.get(contN).setBounds(500, 150, 50, 50);
+				btnNegativos.get(contN).setBounds((ORIGENX * 2) + 140, 150, 50, 50);
 				add(btnNegativos.get(contN));
 				repaint();
 				vMagnitud.getBtnAceptar().setActionCommand("AceptarMagnitudNegativo");
@@ -329,7 +330,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		}
 		if (arg0.getSource().equals(btnPositivos.get(contP))) {
 			if (!verificarArea(btnPositivos.get(contP))) {
-				btnPositivos.get(contP).setLocation(500, 50);
+				btnPositivos.get(contP).setLocation((ORIGENX * 2) + 80, 50);
 				lblPositivoX.setText("x : 0 , 0 cm");
 				lblPositivoY.setText("x : 0 , 0 cm");
 				btnPositivos.get(contP).repaint();
@@ -343,7 +344,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 				btnPositivos.get(contP).setBorderPainted(false);
 				btnPositivos.get(contP).addMouseListener(this);
 				btnPositivos.get(contP).addMouseMotionListener(this);
-				btnPositivos.get(contP).setBounds(500, 50, 50, 50);
+				btnPositivos.get(contP).setBounds((ORIGENX * 2) + 140, 50, 50, 50);
 				add(btnPositivos.get(contP));
 				repaint();
 				vMagnitud.getBtnAceptar().setActionCommand("AceptarMagnitudPositivo");
@@ -353,7 +354,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		}
 		if (arg0.getSource().equals(btnPivote)) {
 			if (!verificarArea(btnPivote)) {
-				btnPivote.setLocation(500, 250);
+				btnPivote.setLocation((ORIGENX * 2) + 80, 250);
 				lblPiboteX.setText("x : 0 , 0 cm");
 				lblPiboteY.setText("x : 0 , 0 cm");
 				btnPivote.repaint();
@@ -485,11 +486,17 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		else if(arg0.getActionCommand()== "calcular potencial de uuna carga puntual") {
 			
 			if(c.getCargas().size() > 1) {
-				JOptionPane.showMessageDialog(null, "Selecione una carga");
-				btnNegativos.get(btnNegativos.size() - 1).setEnabled(false);
-				btnPositivos.get(btnPositivos.size() - 1).setEnabled(false);
-				
-				eventoPotencial = true;
+				if (verificarArea(btnPivote)) {
+					JOptionPane.showMessageDialog(null, "Selecione una carga");
+					btnNegativos.get(btnNegativos.size() - 1).setEnabled(false);
+					btnPositivos.get(btnPositivos.size() - 1).setEnabled(false);
+					
+					eventoPotencial = true;
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Ingrese un punto sobre el plano ");
+
+				}
 			}else {
 				JOptionPane.showMessageDialog(null, "No hay cargas suficieintes sobre el plano");
 			}
@@ -760,4 +767,4 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		}
 	}
 }
-
+// Sofi <3

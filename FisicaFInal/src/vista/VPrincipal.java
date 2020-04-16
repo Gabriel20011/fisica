@@ -162,7 +162,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		setJMenuBar(menu);
 	}
 
-	
+
 	public void iniciarArrays() {
 		btnNegativos = new ArrayList<JButton>();
 		btnPositivos = new ArrayList<JButton>();
@@ -408,7 +408,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			double carga = vMagnitud.enviarMagnitud();
 			if (carga != Math.PI) {
 				int x = (int) btnPositivos.get(contP - 1).getLocation().getX() - ORIGENX;
-				int y = (int) btnPositivos.get(contP - 1).getLocation().getY() - ORIGENY;
+				int y = ORIGENY - (int) btnPositivos.get(contP - 1).getLocation().getY();
 				c.agregar(new Carga(carga, x, y));
 
 				JOptionPane.showMessageDialog(null, "La carga fue ingresada con exito");
@@ -423,7 +423,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			double carga = vMagnitud.enviarMagnitud();
 			if (carga != 5000) {
 				int x = (int) btnNegativos.get(contN - 1).getLocation().getX() - ORIGENX;
-				int y = (int) btnNegativos.get(contN - 1).getLocation().getY() - ORIGENY;
+				int y =  ORIGENY - (int) btnNegativos.get(contN - 1).getLocation().getY();
 				c.agregar(new Carga(carga, x, y));
 
 				JOptionPane.showMessageDialog(null, "La carga fue ingresada con exito");
@@ -541,8 +541,8 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 					}
 				}
 				if (hayCargas) {
-					
-					
+
+
 					c.setPivote(new Carga(1, btnPivote.getLocation().getX()- ORIGENX,
 							ORIGENY - btnPivote.getLocation().getY()));
 					c.convertirMetros();
@@ -559,7 +559,6 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 
 						JOptionPane.showMessageDialog(null, "El resultado es: " + resultadoI + " N/C i " + resultadoJ+ " N/C j");
 					}
-					limpiar();
 
 				}
 				else {
@@ -610,17 +609,17 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 					break;
 				}
 			}
-			
+
 			Carga pivote = c.buscarCarga(btnNegativos.get(index).getLocation().getX() - ORIGENX,
-					btnNegativos.get(index).getLocation().getY() - ORIGENY);
+					ORIGENY - btnNegativos.get(index).getLocation().getY());
 			c.setPivote(pivote);
-			c.convertirMetros();
+//			c.convertirMetros();
 			c.calcularCampo();
 
 			double resultadoI = c.getCe().getCampoI();
 			double resultadoJ = c.getCe().getCampoJ();
-			
-			
+
+
 			if (resultadoJ >= 0 ) {
 				JOptionPane.showMessageDialog(null, "El resultado es: " + resultadoI + " N/C i +" + resultadoJ + " N/C j");
 			}
@@ -638,28 +637,25 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			}
 			btnPivote.setEnabled(true);
 			dibujarVector(btnNegativos.get(index));
+			index = 0;
 			// Si limpio ahora entonces no se vera el campo
-//			limpiar();
-//			repaint();
+			//			limpiar();
+			//			repaint();
 			eventoCalcularN = false;
 
 		}
 		else if (eventoCalcularP == true) {
 			int index = 0;
-			for (index = 0 ; index < btnPositivos.size() - 1 ; index++) {
+			for (index = 0 ; index < btnPositivos.size() - 1; index++) {
 				if (btnPositivos.get(index).equals(arg0.getSource())) {
 					break;
 				}
 			}
 			
-			System.out.println(btnPositivos.get(index).getLocation().getX() - ORIGENX);
-			System.out.println(btnPositivos.get(index).getLocation().getY() - ORIGENY);
-			System.out.println(c.getCargas().size());
 			Carga pivote = c.buscarCarga(btnPositivos.get(index).getLocation().getX() - ORIGENX,
-					btnPositivos.get(index).getLocation().getY() - ORIGENY);
-			
+					ORIGENY - btnPositivos.get(index).getLocation().getY());
 			c.setPivote(pivote);
-			c.convertirMetros();
+//			c.convertirMetros();
 			c.calcularCampo();
 
 			double resultadoI = c.getCe().getCampoI();
@@ -678,11 +674,10 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			for (int i = 0 ; i < btnNegativos.size() ; i++) {
 				btnNegativos.get(i).setEnabled(true);
 			}
-			
+
 			btnPivote.setEnabled(true);
 			dibujarVector(btnPositivos.get(index));
-//			repaint();
-//			limpiar();
+			index = 0;
 			eventoCalcularP = false;
 		}
 		else if (eventoFuerzaN == true) {
@@ -693,49 +688,10 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 					break;
 				}
 			}
-			
+
 			Carga pivote = c.buscarCarga(btnNegativos.get(index).getLocation().getX() - ORIGENX,
-					btnNegativos.get(index).getLocation().getY() - ORIGENY);
+					ORIGENY- btnNegativos.get(index).getLocation().getY());
 			c.setPivote(pivote);
-			c.convertirMetros();
-			c.calcularFuerza();
-
-			double resultadoI = c.getLc().getFuerzaI();
-			double resultadoJ = c.getLc().getFuerzaJ();
-			if (resultadoJ >= 0 ) {
-				JOptionPane.showMessageDialog(null, "El resultado es: " + resultadoI + " C i +" + resultadoJ + " C j");
-			}
-			else {
-
-				JOptionPane.showMessageDialog(null, "El resultado es: " + resultadoI + " C i " + resultadoJ+ " C j");
-			}
-
-			for (int i = 0; i < btnPositivos.size(); i++) {
-				btnPositivos.get(i).setEnabled(true);
-
-			}
-			for (int i = 0 ; i < btnNegativos.size() ; i++) {
-				btnNegativos.get(i).setEnabled(true);
-			}
-			btnPivote.setEnabled(true);
-			dibujarVector(btnNegativos.get(index));
-//			limpiar();
-//			repaint();
-		}
-		else if (eventoFuerzaP == true) {
-			eventoFuerzaP = false;
-			int index;
-			for (index = 0 ; index < btnPositivos.size() - 1 ; index++) {
-				if (btnPositivos.get(index).equals(arg0.getSource())) {
-					break;
-				}
-			}
-			
-			System.out.println(c.getCargas().size());
-			Carga pivote = c.buscarCarga(btnPositivos.get(index).getLocation().getX() - ORIGENX,
-					btnPositivos.get(index).getLocation().getY() - ORIGENY);
-			c.setPivote(pivote);
-			c.convertirMetros();
 			c.calcularFuerza();
 
 			double resultadoI = c.getLc().getFuerzaI();
@@ -757,8 +713,43 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			}
 			btnPivote.setEnabled(true);
 			dibujarVector(btnNegativos.get(index));
-//			limpiar();
-//			repaint();
+			index = 0;
+		}
+		else if (eventoFuerzaP == true) {
+			eventoFuerzaP = false;
+			int index;
+			for (index = 0 ; index < btnPositivos.size() - 1 ; index++) {
+				if (btnPositivos.get(index).equals(arg0.getSource())) {
+					break;
+				}
+			}
+			Carga pivote = c.buscarCarga(btnPositivos.get(index).getLocation().getX() - ORIGENX,
+					ORIGENY - btnPositivos.get(index).getLocation().getY());
+			c.setPivote(pivote);
+//			c.convertirMetros();
+			c.calcularFuerza();
+
+			double resultadoI = c.getLc().getFuerzaI();
+			double resultadoJ = c.getLc().getFuerzaJ();
+			if (resultadoJ >= 0 ) {
+				JOptionPane.showMessageDialog(null, "El resultado es: " + resultadoI + " N i +" + resultadoJ + " N j");
+			}
+			else {
+
+				JOptionPane.showMessageDialog(null, "El resultado es: " + resultadoI + " N i " + resultadoJ+ " N j");
+			}
+
+			for (int i = 0; i < btnPositivos.size(); i++) {
+				btnPositivos.get(i).setEnabled(true);
+
+			}
+			for (int i = 0 ; i < btnNegativos.size() ; i++) {
+				btnNegativos.get(i).setEnabled(true);
+			}
+			btnPivote.setEnabled(true);
+			dibujarVector(btnNegativos.get(index));
+			index = 0;
+
 		}
 	}
 }

@@ -10,17 +10,20 @@ public class CampoElectrico {
 	private double campoPunto(int i, ArrayList<Carga> cargas, Carga pivote) {
 		double a =0;
 		if(cargas.get(i).getCarga()<0) {
-			cargas.get(i).setCarga(cargas.get(i).getCarga()*-1);
-		}
+			a = (k*pivote.getCarga()*(cargas.get(i).getCarga()*-1))/(Math.pow(cargas.get(i).getR(), 2));
+		}else {
 			a = (k*pivote.getCarga()*cargas.get(i).getCarga())/(Math.pow(cargas.get(i).getR(), 2));
+
+		}
 		return a;
 	}
 	public void vectorCampo(ArrayList<Carga> cargas, Carga pivote) {
 		campoI=0;
 		campoJ=0;
+		System.out.println(cargas.get(0).getCarga());
 		for (int i = 0; i < cargas.size(); i++) {
-			if(cargas.get(i).getCarga()>0 && pivote.getCarga()<0 ||
-			cargas.get(i).getCarga()<0 && pivote.getCarga()>0) {
+			if((cargas.get(i).getCarga()>0 && pivote.getCarga()<0) ||
+			(cargas.get(i).getCarga()<0 && pivote.getCarga()>0)) {
 				unitarioAtracion(cargas, pivote);
 			}else{
 				unitarioRepulsion(cargas, pivote);
@@ -34,6 +37,7 @@ public class CampoElectrico {
 		
 		double pivoteX = pivote.getX()/100;
 		double pivoteY = pivote.getY()/100;
+		System.out.println("atraigo");
 		for (int i = 0; i < cargas.size(); i++) {
 			double sumaI = (cargas.get(i).getX()/100)-pivoteX;
 			double sumaJ = (cargas.get(i).getY()/100)-pivoteY;
@@ -47,6 +51,7 @@ public class CampoElectrico {
 
 		double pivoteX = pivote.getX()/100;
 		double pivoteY = pivote.getY()/100;
+		System.out.println("repelo");
 		for (int i = 0; i < cargas.size(); i++) {
 			double sumaI = (cargas.get(i).getX()/100)-pivoteX;
 			double sumaJ = (cargas.get(i).getY()/100)-pivoteY;

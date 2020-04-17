@@ -43,7 +43,7 @@ private static final long serialVersionUID = 1L;
 	
 	public MainMenu(Controlador q) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		
+		setResizable(false);
 		setSize(660, 510);
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

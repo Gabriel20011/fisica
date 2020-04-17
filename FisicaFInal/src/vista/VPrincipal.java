@@ -550,6 +550,19 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 
 						JOptionPane.showMessageDialog(null, "El resultado es: " + resultadoI + " N/C i " + resultadoJ+ " N/C j");
 					}
+					if (Math.abs(resultadoJ) < 100 && Math.abs(resultadoJ) < 100) {
+						while(Math.abs(resultadoJ) < 100 && Math.abs(resultadoI) < 100){
+							resultadoJ *= 10;
+							resultadoI *= 10;
+						}
+					}
+					else if (Math.abs(resultadoJ) > 1000 || Math.abs(resultadoJ) > 1000) {
+						while(Math.abs(resultadoJ) > 1000 && Math.abs(resultadoJ) > 1000) {
+							resultadoJ /= 10;
+							resultadoI /= 10;
+						}
+					}
+					dibujarVector(new Point((int)resultadoI, (int) resultadoJ));
 
 				}
 				else {
@@ -626,7 +639,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 				btnNegativos.get(i).setEnabled(true);
 			}
 			btnPivote.setEnabled(true);
-			if (Math.abs(resultadoJ) < 100 && Math.abs(resultadoJ) < 100) {
+			if (Math.abs(resultadoJ) < 100 || Math.abs(resultadoJ) < 100) {
 				while(Math.abs(resultadoJ) < 100 && Math.abs(resultadoI) < 100){
 					resultadoJ *= 10;
 					resultadoI *= 10;
@@ -674,7 +687,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			}
 
 			btnPivote.setEnabled(true);
-			if (Math.abs(resultadoJ) < 100 && Math.abs(resultadoJ) < 100) {
+			if (Math.abs(resultadoJ) < 100 || Math.abs(resultadoJ) < 100) {
 				while(Math.abs(resultadoJ) < 100 && Math.abs(resultadoI) < 100){
 					resultadoJ *= 10;
 					resultadoI *= 10;
@@ -722,7 +735,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 				btnNegativos.get(i).setEnabled(true);
 			}
 			btnPivote.setEnabled(true);
-			if (Math.abs(resultadoJ) < 100 && Math.abs(resultadoJ) < 100) {
+			if (Math.abs(resultadoJ) < 100 || Math.abs(resultadoJ) < 100) {
 				while(Math.abs(resultadoJ) < 100 && Math.abs(resultadoI) < 100){
 					resultadoJ *= 10;
 					resultadoI *= 10;

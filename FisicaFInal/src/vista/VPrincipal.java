@@ -34,7 +34,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 	fuezaPositivo, fuerzaNegativo, calcularpotencial;
 	private vVector vVector;
 	private JLabel lblPiboteX, lblPiboteY, lblPositivoX, lblPositivoY, lblNegativoX, lblNegativoY;
-	private boolean eventoCalcularP , eventoCalcularN, eventoFuerzaP, eventoFuerzaN, eventoPotencial;
+	private boolean eventoCalcularP , eventoCalcularN, eventoFuerzaP, eventoFuerzaN ;
 	private ImageIcon imgPositivos = new ImageIcon("Imagenes/carga positiva.png");
 	private ImageIcon imgNegativos = new ImageIcon("Imagenes/carga negativa.png");
 	private ImageIcon imgPunto = new ImageIcon("Imagenes/punto.png");
@@ -485,8 +485,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		else if(arg0.getActionCommand()== "calcular potencial de una carga puntual") {
 
 			if(c.getCargas().size() > 0) {
-				if (verificarArea(btnPivote)) {					
-					eventoPotencial = true;
+				if (verificarArea(btnPivote)) {	
 					Carga pivote = new Carga(1, btnPivote.getLocation().getX() - ORIGENX,
 							ORIGENY - btnPivote.getLocation().getY());
 					c.setPivote(pivote);
@@ -627,7 +626,19 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 				btnNegativos.get(i).setEnabled(true);
 			}
 			btnPivote.setEnabled(true);
-			dibujarVector(btnNegativos.get(index).getLocation());
+			if (Math.abs(resultadoJ) < 100 && Math.abs(resultadoJ) < 100) {
+				while(Math.abs(resultadoJ) < 100 && Math.abs(resultadoI) < 100){
+					resultadoJ *= 10;
+					resultadoI *= 10;
+				}
+			}
+			else if (Math.abs(resultadoJ) > 1000 || Math.abs(resultadoJ) > 1000) {
+				while(Math.abs(resultadoJ) > 1000 && Math.abs(resultadoJ) > 1000) {
+					resultadoJ /= 10;
+					resultadoI /= 10;
+				}
+			}
+			dibujarVector(new Point((int)resultadoI, (int) resultadoJ));
 			index = 0;
 			eventoCalcularN = false;
 
@@ -663,7 +674,19 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			}
 
 			btnPivote.setEnabled(true);
-			dibujarVector(btnPositivos.get(index).getLocation());
+			if (Math.abs(resultadoJ) < 100 && Math.abs(resultadoJ) < 100) {
+				while(Math.abs(resultadoJ) < 100 && Math.abs(resultadoI) < 100){
+					resultadoJ *= 10;
+					resultadoI *= 10;
+				}
+			}
+			else if (Math.abs(resultadoJ) > 1000 || Math.abs(resultadoJ) > 1000) {
+				while(Math.abs(resultadoJ) > 1000 && Math.abs(resultadoJ) > 1000) {
+					resultadoJ /= 10;
+					resultadoI /= 10;
+				}
+			}
+			dibujarVector(new Point((int)resultadoI, (int) resultadoJ));
 			index = 0;
 			eventoCalcularP = false;
 		}
@@ -699,7 +722,19 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 				btnNegativos.get(i).setEnabled(true);
 			}
 			btnPivote.setEnabled(true);
-			dibujarVector(btnNegativos.get(index).getLocation());
+			if (Math.abs(resultadoJ) < 100 && Math.abs(resultadoJ) < 100) {
+				while(Math.abs(resultadoJ) < 100 && Math.abs(resultadoI) < 100){
+					resultadoJ *= 10;
+					resultadoI *= 10;
+				}
+			}
+			else if (Math.abs(resultadoJ) > 1000 || Math.abs(resultadoJ) > 1000) {
+				while(Math.abs(resultadoJ) > 1000 && Math.abs(resultadoJ) > 1000) {
+					resultadoJ /= 10;
+					resultadoI /= 10;
+				}
+			}
+			dibujarVector(new Point((int)resultadoI, (int) resultadoJ));
 		}
 		else if (eventoFuerzaP == true) {
 			eventoFuerzaP = false;
@@ -732,7 +767,21 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 				btnNegativos.get(i).setEnabled(true);
 			}
 			btnPivote.setEnabled(true);
-			dibujarVector(btnPositivos.get(index).getLocation());
+			
+			if (Math.abs(resultadoJ) < 100 && Math.abs(resultadoJ) < 100) {
+				while(Math.abs(resultadoJ) < 100 && Math.abs(resultadoI) < 100){
+					resultadoJ *= 10;
+					resultadoI *= 10;
+				}
+			}
+			else if (Math.abs(resultadoJ) > 1000 || Math.abs(resultadoJ) > 1000) {
+				while(Math.abs(resultadoJ) > 1000 && Math.abs(resultadoJ) > 1000) {
+					resultadoJ /= 10;
+					resultadoI /= 10;
+				}
+			}
+			dibujarVector(new Point((int)resultadoI, (int) resultadoJ));
+
 			index = 0;
 		}
 

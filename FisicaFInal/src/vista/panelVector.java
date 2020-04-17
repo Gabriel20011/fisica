@@ -28,7 +28,9 @@ public class panelVector extends JPanel {
 	}
 	
 	public void graficarVector(Graphics2D g) {
-		Line2D linea = new Line2D.Float(new Point((int)(400/2), (int) (320/2)), dir);
+		System.out.println(dir.x);
+		System.out.println(dir.y);
+		Line2D linea = new Line2D.Float(new Point((int)(400/2), (int) (320/2)), new Point(dir.x - 200 , 200 - dir.y ));
 		g.draw(linea);
 		
 	}

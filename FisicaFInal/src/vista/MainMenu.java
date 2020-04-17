@@ -50,7 +50,7 @@ private static final long serialVersionUID = 1L;
 		setLocationRelativeTo(null);
 		getContentPane().setBackground(Color.white);
 		
-		fbackground = new File("C:\\Users\\tigre\\git\\fisica\\FisicaFInal\\Imagenes\\menuimg.png");
+		fbackground = new File("Imagenes\\menuimg.png");
 		setContentPane(new JLabel(new ImageIcon(fbackground.getAbsolutePath())));
 
 			

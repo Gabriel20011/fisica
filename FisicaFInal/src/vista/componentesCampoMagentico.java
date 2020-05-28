@@ -12,7 +12,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeListener;
 
-public class componentesCampoMagentico implements ActionListener {
+public class componentesCampoMagentico {
 	
 	protected JButton calcular;
 	private SpinnerModel modeloX, modeloY;
@@ -85,13 +85,5 @@ public class componentesCampoMagentico implements ActionListener {
 		btnAceptar.setVisible(true);
 		notacion.setVisible(true);
 		magnitud.setVisible(true); 
-	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		String ac = e.getActionCommand();
-		if(ac.equals("Calcular")) {
-			
-		}
 	}
 }

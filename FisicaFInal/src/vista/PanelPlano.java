@@ -1,7 +1,5 @@
 package vista;
 
-
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -14,6 +12,9 @@ public class PanelPlano extends JPanel {
 	
 	private int alto;
 	private int ancho;
+	private boolean esPositivo;
+	private Point velocidad = null;
+	private Point campo = null;
 
 	
 
@@ -25,10 +26,25 @@ public class PanelPlano extends JPanel {
 		setBackground(Color.black);
 
 	}
+	
+	public PanelPlano(int ancho, int alto, boolean esPositivo, Point velocidad, Point campo) {
+		this.alto = alto;
+		this.ancho = ancho;
+		this.esPositivo = esPositivo;
+		this.velocidad = velocidad;
+		this.campo = campo;
+
+		setLayout(null);
+		setBackground(Color.black);
+	}
+	
 	@Override
 	public void paintComponent(Graphics g)
 	{
 		dibujar((Graphics2D) g);
+		if (velocidad != null) {
+			dibujarVectores(esPositivo, velocidad, campo);
+		}
 	}
 
 
@@ -86,4 +102,7 @@ public class PanelPlano extends JPanel {
 		g.draw(BordeLateralD);
 	}
 
+	public void dibujarVectores(boolean esPositivo, Point velocidad, Point campo) {
+		
+	}
 }

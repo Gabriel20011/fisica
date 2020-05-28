@@ -205,7 +205,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		
 	}
 	
-	public void hacerInvisibles() {
+	public void hacerElementosInvisibles() {
 		
 		btnPositivos.get(0).setVisible(false);
 		btnNegativos.get(0).setVisible(false);
@@ -344,6 +344,8 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
+		hacerElemntosVisibles();
+		vSofia.invisible();
 		if (arg0.getSource().equals(btnNegativos.get(contN))) {
 			if (!verificarArea(btnNegativos.get(contN))) {
 				btnNegativos.get(contN).setLocation((ORIGENX * 2) + 80, 150);
@@ -412,6 +414,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		if(arg0.getActionCommand().equals("Limpiar")){
 			limpiar();
 		}
@@ -648,12 +651,14 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		}
 		else if (arg0.getActionCommand() == "Calcular Campo Magnetico") {
 			
-			hacerInvisibles();
+			hacerElementosInvisibles();
 			vSofia.visible();
 			
 			
 		}
 		else if (arg0.getActionCommand() == "Sofia") {
+			hacerElementosInvisibles();
+			vSofia.visible();
 			double carga = Double.parseDouble(vSofia.magnitud+"E"+vSofia.notacion.getSelectedIndex());
 			double xVel = Double.parseDouble(vSofia.xVelocidad.getValue().toString());
 			double yVel = Double.parseDouble(vSofia.yVelocidad.getValue().toString());
@@ -668,7 +673,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			b.add(yField);
 			b.add((double) 0);
 			c.getMagnetico().fuerzaElectromagnetica(carga, v, b);
-			JOptionPane.showMessageDialog(null, "("+c.getMagnetico().getX()+" x "+c.getMagnetico().getY()+" y "+c.getMagnetico().getZ()+" z) N");
+			JOptionPane.showMessageDialog(null, "La fuerza del campo magnetico es: \n" + "("+c.getMagnetico().getX()+" i "+c.getMagnetico().getY()+" j "+c.getMagnetico().getZ()+" k) N");
 			
 		}
 		else if (eventoCalcularN == true) {

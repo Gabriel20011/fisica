@@ -169,6 +169,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		menu.add(campoTools);
 		menu.add(fuerzaTools);
 		menu.add(potencial);
+		menu.add(cMagentico);
 		setJMenuBar(menu);
 	}
 
@@ -199,6 +200,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		lblPiboteY.setVisible(true);
 		lblPositivoX.setVisible(true);
 		lblPositivoY.setVisible(true);
+		btnPivote.setVisible(true);
 		
 		
 	}
@@ -213,6 +215,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		lblPiboteY.setVisible(false);
 		lblPositivoX.setVisible(false);
 		lblPositivoY.setVisible(false);
+		btnPivote.setVisible(false);
 	}
 
 	public void limpiar() {
@@ -643,7 +646,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			}
 
 		}
-		else if (arg0.getActionCommand() == "Campo Magnetico") {
+		else if (arg0.getActionCommand() == "Calcular Campo Magnetico") {
 			
 			hacerInvisibles();
 			vSofia.visible();

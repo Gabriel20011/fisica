@@ -39,12 +39,14 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 	private ImageIcon imgNegativos = new ImageIcon("Imagenes/carga negativa.png");
 	private ImageIcon imgPunto = new ImageIcon("Imagenes/punto.png");
 	private Controlador c;
+	private componentesCampoMagentico vSofia;
 
 
 
 	public VPrincipal (Controlador c, int anchura, int altura) {
 		super("Fisica");
 		this.c = c;
+		
 		ORIGENX = (anchura/2) - 15;
 		ORIGENY = (altura/2) - 25;
 		setSize(anchura + 300, altura + 50);
@@ -54,6 +56,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		setLocationRelativeTo(null);
 		getContentPane().setBackground(Color.white);
 
+		vSofia = new componentesCampoMagentico(this, (ORIGENX * 2) + 140);
 		vMagnitud = new VMagnitud(this);
 		vPosicion = new VPosicion(this);
 
@@ -643,7 +646,16 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		else if (arg0.getActionCommand() == "Campo Magnetico") {
 			
 			hacerInvisibles();
+			vSofia.visible();
 			
+			
+		}
+		else if (arg0.getActionCommand() == "Sofia") {
+			
+			int xVel = Integer.parseInt(vSofia.xVelocidad.getValue().toString());
+			int yVel = Integer.parseInt(vSofia.yVelocidad.getValue().toString());
+			int xField = Integer.parseInt(vSofia.xCampoMagnetico.getValue().toString());
+			int yField = Integer.parseInt(vSofia.yCampoMagnetico.getValue().toString());
 			
 		}
 		else if (eventoCalcularN == true) {

@@ -10,7 +10,6 @@ import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.event.ChangeListener;
 
 public class componentesCampoMagentico {
 	
@@ -30,6 +29,10 @@ public class componentesCampoMagentico {
 	public componentesCampoMagentico(VPrincipal vPrincipal, int margenX) {
 		this.vPrincipal = vPrincipal;
 		calcular = new JButton("Calcular");
+<<<<<<< HEAD
+=======
+		calcular.setActionCommand("Sofia");
+>>>>>>> branch 'ramaJuan' of https://github.com/Gabriel20011/fisica
 		calcular.addActionListener(vPrincipal);
 		xLblVel = new JLabel();
 		yLblVel = new JLabel();

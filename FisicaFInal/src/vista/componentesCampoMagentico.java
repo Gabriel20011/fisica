@@ -13,41 +13,57 @@ import javax.swing.SpinnerNumberModel;
 
 public class componentesCampoMagentico {
 	
-	protected JButton calcular;
-	private SpinnerModel modeloX, modeloY;
-	protected JLabel xLblVel, yLblVel;
+	private JButton calcular;
+	private SpinnerModel modeloX, modeloY, sofia;
+	private JLabel xLblVel, yLblVel;
 	protected JSpinner xVelocidad, yVelocidad;
-	protected JLabel xLblCampo, yLblCampo;
+	private JLabel xLblCampo, yLblCampo;
 	protected JSpinner xCampoMagnetico, yCampoMagnetico;
-	protected JLabel lblCarga;
-	protected JLabel lblInfo, lblPorDiez, lblcoulomb;
-	protected JButton btnAceptar;
+	private JLabel lblCarga;
+	private JLabel  lblPorDiez;
 	protected JComboBox<Integer> notacion;
 	protected JTextArea magnitud;
 	private VPrincipal vPrincipal;
 	
 	public componentesCampoMagentico(VPrincipal vPrincipal, int margenX) {
 		this.vPrincipal = vPrincipal;
-		calcular = new JButton("Calcular");
-		calcular.addActionListener(vPrincipal);
-		xLblVel = new JLabel();
-		yLblVel = new JLabel();
+		
+		
+		xLblVel = new JLabel("Velocidad en X (m/s)");
+		xLblVel.setBounds(margenX, 20 , 200, 50);
+		vPrincipal.add(xLblVel);
+		
 		xVelocidad = new JSpinner();
+		xVelocidad.setBounds(margenX, 70, 200, 50);
+		vPrincipal.add(xVelocidad);
+		
+		yLblVel = new JLabel("Velocidad en Y (m/s)");
 		yVelocidad = new JSpinner();
-		xLblCampo = new JLabel();
-		yLblCampo = new JLabel();
+		
+		xLblCampo = new JLabel("Campo magnetico en X (T)");
 		xCampoMagnetico = new JSpinner();
+		
+		yLblCampo = new JLabel("Campo magnetico en Y (T)");
 		yCampoMagnetico = new JSpinner();
-		lblCarga = new JLabel();
-		lblInfo = new JLabel();
-		lblPorDiez = new JLabel();
-		lblcoulomb = new JLabel();
-		btnAceptar = new JButton("Aceptar");
-		notacion = new JComboBox<Integer>();
+		
+		lblCarga = new JLabel("Magnitud Carga (c)");
+		
 		magnitud = new JTextArea();
-		modeloY = new SpinnerNumberModel();
-		modeloX = new SpinnerNumberModel();
-
+		
+		lblPorDiez = new JLabel("x10"); 
+		
+		Integer[] exponentes = new Integer[37];
+		for (int i = 0; i < exponentes.length; i++) {
+			exponentes[i] = -18 + i;
+		}
+		
+		notacion = new JComboBox<Integer>(exponentes);
+		notacion.setSelectedIndex(18);
+		
+		calcular = new JButton("Calcular");
+		calcular.setActionCommand("Sofia");
+		calcular.addActionListener(vPrincipal);;
+		
 	}
 	public void invisible() {
 		calcular.setVisible(false);
@@ -60,10 +76,7 @@ public class componentesCampoMagentico {
 		xCampoMagnetico.setVisible(false);
 		yCampoMagnetico.setVisible(false);
 		lblCarga.setVisible(false);
-		lblInfo.setVisible(false);
 		lblPorDiez.setVisible(false);
-		lblcoulomb.setVisible(false);
-		btnAceptar.setVisible(false);
 		notacion.setVisible(false);
 		magnitud.setVisible(false); 
 	}
@@ -78,11 +91,11 @@ public class componentesCampoMagentico {
 		xCampoMagnetico.setVisible(true);
 		yCampoMagnetico.setVisible(true);
 		lblCarga.setVisible(true);
-		lblInfo.setVisible(true);
 		lblPorDiez.setVisible(true);
-		lblcoulomb.setVisible(true);
-		btnAceptar.setVisible(true);
 		notacion.setVisible(true);
 		magnitud.setVisible(true); 
+	}
+	public void cargarSpinners() {
+		
 	}
 }

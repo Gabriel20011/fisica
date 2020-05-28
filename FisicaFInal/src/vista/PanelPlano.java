@@ -43,7 +43,7 @@ public class PanelPlano extends JPanel {
 	{
 		dibujar((Graphics2D) g);
 		if (velocidad != null) {
-			dibujarVectores(esPositivo, velocidad, campo);
+			dibujarVectores((Graphics2D) g);
 		}
 	}
 
@@ -102,7 +102,14 @@ public class PanelPlano extends JPanel {
 		g.draw(BordeLateralD);
 	}
 
-	public void dibujarVectores(boolean esPositivo, Point velocidad, Point campo) {
-		
+	public void dibujarVectores(Graphics2D g) {
+		g.setColor(Color.RED);
+		Line2D fuerza;
+		if (esPositivo) {
+			fuerza = new Line2D.Double(alto/2, ancho/2 , ancho , alto);
+		}
+		else {
+			fuerza = new Line2D.Double(alto/2 , ancho/2 , 0 ,0);
+		}
 	}
 }

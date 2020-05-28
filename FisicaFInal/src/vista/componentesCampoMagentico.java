@@ -31,7 +31,6 @@ public class componentesCampoMagentico {
 		xLblVel.setBounds(margen, 0 , 200, 50);
 		vPrincipal.add(xLblVel);
 		
-		modeloX = new SpinnerNumberModel(value, minimum, maximum, stepSize);
 		xVelocidad = new JSpinner(modeloX);
 		xVelocidad.setBounds(margen, 50, 200, 50);
 		vPrincipal.add(xVelocidad);

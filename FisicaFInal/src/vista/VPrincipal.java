@@ -21,7 +21,7 @@ import modelo.Carga;
 
 public class VPrincipal extends JFrame implements MouseMotionListener, MouseListener, ActionListener {
 
-	private final int ORIGENX, ORIGENY;
+	private final int ORIGENX, ORIGENY, ALTURA, ANCHURA;
 	private PanelPlano pPlano;
 	private VMagnitud vMagnitud;
 	private VPosicion vPosicion;
@@ -46,9 +46,10 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 	public VPrincipal (Controlador c, int anchura, int altura) {
 		super("Fisica");
 		this.c = c;
-		
-		ORIGENX = (anchura/2) - 15;
-		ORIGENY = (altura/2) - 25;
+		ANCHURA = anchura;
+		ALTURA = altura;
+		ORIGENX = (ANCHURA/2) - 15;
+		ORIGENY = (ALTURA/2) - 25;
 		setSize(anchura + 300, altura + 50);
 
 		setLayout(null);
@@ -60,7 +61,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		vMagnitud = new VMagnitud(this);
 		vPosicion = new VPosicion(this);
 
-		pPlano = new PanelPlano(anchura, altura);
+		pPlano = new PanelPlano(ANCHURA, ALTURA);
 		pPlano.setBounds(10, 0, anchura + 10, altura + 10);
 		pPlano.setVisible(true);
 		add(pPlano);
@@ -674,7 +675,12 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			b.add((double) 0);
 			c.getMagnetico().fuerzaElectromagnetica(carga, v, b);
 
-			JOptionPane.showMessageDialog(null, "La fuerza del campo es:\n" + "("+c.getMagnetico().getFuerza()+") N");			
+			JOptionPane.showMessageDialog(null, "La fuerza del campo es:\n" + "("+c.getMagnetico().getFuerza()+") N");
+			boolean isPostive = false;
+			if (c.getMagnetico().getZ() >= 0) {
+				isPostive = true;
+			}
+			pPlano = new PanelPlano(ANCHURA, ALTURA, isPostive, new Point((int)xVel, (int) yVel), new Point( (int) xField, (int) yField));
 		}
 		else if (eventoCalcularN == true) {
 
@@ -868,8 +874,6 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 
 			index = 0;
 		}
-		
-
 	}
 }
 // Sofi <3

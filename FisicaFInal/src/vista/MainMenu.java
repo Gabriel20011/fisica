@@ -1,4 +1,4 @@
-package vista;
+	package vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -71,7 +71,7 @@ private static final long serialVersionUID = 1L;
 		bigy.setBounds(340, 250, 210, 30);
 		add(bigy);
 		
-		sofia = new SpinnerNumberModel(350, 50, (screenSize.height) , 25);
+		sofia = new SpinnerNumberModel(500, 450, (screenSize.height) , 25);
 		altura = new JSpinner(sofia);
 		altura.setBounds(360, 280, 150, 30);
 		add(altura);

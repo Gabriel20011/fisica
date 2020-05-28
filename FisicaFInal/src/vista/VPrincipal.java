@@ -31,7 +31,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 	private JButton btnPivote;
 	private JMenuBar menu;
 	private JMenuItem limpiar, positivo, negativo, punto, calcularPositivo, calcularNegativo, calcularPunto,
-	fuezaPositivo, fuerzaNegativo, calcularpotencial;
+	fuezaPositivo, fuerzaNegativo, calcularpotencial, campoMagnetico;
 	private vVector vVector;
 	private JLabel lblPiboteX, lblPiboteY, lblPositivoX, lblPositivoY, lblNegativoX, lblNegativoY;
 	private boolean eventoCalcularP , eventoCalcularN, eventoFuerzaP, eventoFuerzaN ;
@@ -127,6 +127,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		JMenu opciones = new JMenu("Opciones");
 		JMenu fuerzaTools = new JMenu("Fuerza");
 		JMenu potencial = new JMenu("Potencial");
+		JMenu cMagentico = new JMenu("Campo Magnetico");
 		limpiar = new JMenuItem("Limpiar");
 		limpiar.addActionListener(this);
 		positivo = new JMenuItem("Ingresar carga positiva");
@@ -147,6 +148,9 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		calcularPunto.addActionListener(this);
 		calcularpotencial = new JMenuItem("calcular potencial de una carga puntual");
 		calcularpotencial.addActionListener(this);
+		campoMagnetico = new JMenuItem("Calcular Campo Magnetico");
+		campoMagnetico.addActionListener(this);
+		cMagentico.add(campoMagnetico);
 		opciones.add(limpiar);
 		opciones.add(positivo);
 		opciones.add(negativo);
@@ -157,6 +161,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		fuerzaTools.add(fuezaPositivo);
 		fuerzaTools.add(fuerzaNegativo);
 		potencial.add(calcularpotencial);
+		
 		menu.add(opciones);
 		menu.add(campoTools);
 		menu.add(fuerzaTools);
@@ -175,6 +180,36 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		vVector = new vVector(vector);
 		vVector.setSize(400, 335);
 		vVector.setVisible(true);
+	}
+	
+	public void mostrarOpcionesCampo() {
+		
+	}
+	
+	public void hacerElemntosVisibles() {
+		
+		btnPositivos.get(0).setVisible(true);
+		btnNegativos.get(0).setVisible(true);
+		lblNegativoX.setVisible(true);
+		lblNegativoY.setVisible(true);
+		lblPiboteX.setVisible(true);
+		lblPiboteY.setVisible(true);
+		lblPositivoX.setVisible(true);
+		lblPositivoY.setVisible(true);
+		
+		
+	}
+	
+	public void hacerInvisibles() {
+		
+		btnPositivos.get(0).setVisible(false);
+		btnNegativos.get(0).setVisible(false);
+		lblNegativoX.setVisible(false);
+		lblNegativoY.setVisible(false);
+		lblPiboteX.setVisible(false);
+		lblPiboteY.setVisible(false);
+		lblPositivoX.setVisible(false);
+		lblPositivoY.setVisible(false);
 	}
 
 	public void limpiar() {
@@ -605,6 +640,12 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			}
 
 		}
+		else if (arg0.getActionCommand() == "Campo Magnetico") {
+			
+			hacerInvisibles();
+			
+			
+		}
 		else if (eventoCalcularN == true) {
 
 			int index;
@@ -797,6 +838,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 
 			index = 0;
 		}
+		
 
 	}
 }

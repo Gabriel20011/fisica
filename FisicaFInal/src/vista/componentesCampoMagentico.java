@@ -29,7 +29,6 @@ public class componentesCampoMagentico {
 		this.vPrincipal = vPrincipal;
 		
 		
-		
 		xLblVel = new JLabel("Velocidad en X (m/s)");
 		xLblVel.setBounds(margenX, 20 , 200, 50);
 		vPrincipal.add(xLblVel);
@@ -65,10 +64,6 @@ public class componentesCampoMagentico {
 		calcular.setActionCommand("Sofia");
 		calcular.addActionListener(vPrincipal);;
 		
-		
-		modeloY = new SpinnerNumberModel();
-		modeloX = new SpinnerNumberModel();
-
 	}
 	public void invisible() {
 		calcular.setVisible(false);
@@ -87,7 +82,6 @@ public class componentesCampoMagentico {
 	}
 	public void visible() {
 		calcular.setVisible(true);
-		calcular.addActionListener(vPrincipal);
 		xLblVel.setVisible(true);
 		yLblVel.setVisible(true);
 		xVelocidad.setVisible(true);

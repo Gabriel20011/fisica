@@ -5,18 +5,20 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Line2D;
+import java.awt.geom.Line2D.Double;
+
 import javax.swing.JPanel;
 
 public class PanelPlano extends JPanel {
-	
-	
+
+
 	private int alto;
 	private int ancho;
 	private boolean esPositivo;
-	private Point velocidad = null;
-	private Point campo = null;
+	private Point velocidad;
+	private Point campo;
 
-	
+
 
 	public PanelPlano(int ancho, int alto) {
 		this.alto = alto;
@@ -26,25 +28,13 @@ public class PanelPlano extends JPanel {
 		setBackground(Color.black);
 
 	}
-	
-	public PanelPlano(int ancho, int alto, boolean esPositivo, Point velocidad, Point campo) {
-		this.alto = alto;
-		this.ancho = ancho;
-		this.esPositivo = esPositivo;
-		this.velocidad = velocidad;
-		this.campo = campo;
 
-		setLayout(null);
-		setBackground(Color.black);
-	}
-	
 	@Override
 	public void paintComponent(Graphics g)
 	{
+
 		dibujar((Graphics2D) g);
-		if (velocidad != null) {
-			dibujarVectores((Graphics2D) g);
-		}
+
 	}
 
 
@@ -85,7 +75,7 @@ public class PanelPlano extends JPanel {
 			}
 		}
 
-		
+
 		g.setColor(Color.BLACK);
 		Line2D linea_y = new Line2D.Double(ancho/2,0,ancho/2,alto);
 		Line2D BordeSuperior = new Line2D.Double(0, 0, ancho, 0);
@@ -100,16 +90,76 @@ public class PanelPlano extends JPanel {
 		g.draw(BordeInferior);
 		g.draw(BordeLateralI);
 		g.draw(BordeLateralD);
+
+		if (velocidad != null) {
+			System.out.println("f");
+			dibujarVectores((Graphics2D) g);
+		}
 	}
 
 	public void dibujarVectores(Graphics2D g) {
 		g.setColor(Color.RED);
 		Line2D fuerza;
 		if (esPositivo) {
-			fuerza = new Line2D.Double(alto/2, ancho/2 , ancho , alto);
+			fuerza = new Line2D.Double(ancho/2, alto/2 , ancho , alto);
 		}
 		else {
-			fuerza = new Line2D.Double(alto/2 , ancho/2 , 0 ,0);
+			fuerza = new Line2D.Double(ancho/2 , alto/2 , 0 ,0);
 		}
+		g.draw(fuerza);
+		g.setColor(Color.BLUE);
+
+		Line2D sofia = new Line2D.Double(ancho/2, alto/2, velocidad.x + ancho/2, alto/2 - velocidad.y);
+
+		g.draw(sofia);
+
+		g.setColor(Color.GREEN);
+		Line2D sofi = new Line2D.Double(ancho/2, alto/2, campo.x + ancho/2, alto/2 - campo.y );
+
+		g.draw(sofi);
+
+
 	}
+
+	public int getAlto() {
+		return alto;
+	}
+
+	public void setAlto(int alto) {
+		this.alto = alto;
+	}
+
+	public int getAncho() {
+		return ancho;
+	}
+
+	public void setAncho(int ancho) {
+		this.ancho = ancho;
+	}
+
+	public boolean isEsPositivo() {
+		return esPositivo;
+	}
+
+	public void setEsPositivo(boolean esPositivo) {
+		this.esPositivo = esPositivo;
+	}
+
+	public Point getVelocidad() {
+		return velocidad;
+	}
+
+	public void setVelocidad(Point velocidad) {
+		this.velocidad = velocidad;
+	}
+
+	public Point getCampo() {
+		return campo;
+	}
+
+	public void setCampo(Point campo) {
+		this.campo = campo;
+	}
+
+
 }

@@ -8,7 +8,7 @@ public class vVector extends JFrame {
 	private panelVector pVector;
 	
 	public vVector(Point dir) {
-		super("Verctor director...");
+		super("Vector director...");
 		setLocationRelativeTo(null);
 		setLayout(null);
 		pVector = new panelVector(dir);

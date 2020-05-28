@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +22,7 @@ import modelo.Carga;
 
 public class VPrincipal extends JFrame implements MouseMotionListener, MouseListener, ActionListener {
 
-	private final int ORIGENX, ORIGENY, ALTURA, ANCHURA;
+	protected int ORIGENX, ORIGENY, ALTURA, ANCHURA;
 	private PanelPlano pPlano;
 	private VMagnitud vMagnitud;
 	private VPosicion vPosicion;
@@ -416,8 +417,13 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
+		
+		
 		if(arg0.getActionCommand().equals("Limpiar")){
 			limpiar();
+			hacerElemntosVisibles();
+			vSofia.invisible();
+			pPlano.repaint();
 		}
 		else if (arg0.getActionCommand() == "AceptarMagnitudPositivo") {
 
@@ -680,7 +686,12 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			if (c.getMagnetico().getZ() >= 0) {
 				isPostive = true;
 			}
-			pPlano = new PanelPlano(ANCHURA, ALTURA, isPostive, new Point((int)xVel, (int) yVel), new Point( (int) xField, (int) yField));
+			pPlano.setEsPositivo(isPostive);
+			pPlano.setVelocidad(hacerloGraficable(xVel, yVel));
+			pPlano.setCampo(hacerloGraficable(xField, yField));
+			pPlano.dibujar((Graphics2D) pPlano.getGraphics());
+			revalidate();
+			pPlano.revalidate();
 		}
 		else if (eventoCalcularN == true) {
 
@@ -874,6 +885,22 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 
 			index = 0;
 		}
+	}
+	
+	public Point hacerloGraficable(double resultadoI, double resultadoJ) {
+		if (Math.abs(resultadoJ) < 100 && Math.abs(resultadoJ) < 100) {
+			while(Math.abs(resultadoJ) < 100 && Math.abs(resultadoI) < 100){
+				resultadoJ *= 10;
+				resultadoI *= 10;
+			}
+		}
+		else if (Math.abs(resultadoJ) > 1000 || Math.abs(resultadoJ) > 1000) {
+			while(Math.abs(resultadoJ) > 1000 && Math.abs(resultadoJ) > 1000) {
+				resultadoJ /= 10;
+				resultadoI /= 10;
+			}
+		}
+		return new Point((int) resultadoI , (int) resultadoJ);
 	}
 }
 // Sofi <3

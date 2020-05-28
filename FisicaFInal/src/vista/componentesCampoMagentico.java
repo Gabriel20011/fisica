@@ -1,4 +1,5 @@
 package vista;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -10,7 +11,7 @@ import javax.swing.SpinnerNumberModel;
 public class componentesCampoMagentico {
 	
 	private JButton calcular;
-	private SpinnerModel modeloX, modeloY, sofia;
+	private SpinnerModel modeloX, modeloY, sofiaX, sofiaY;
 	private JLabel xLblVel, yLblVel;
 	protected JSpinner xVelocidad, yVelocidad;
 	private JLabel xLblCampo, yLblCampo;
@@ -31,6 +32,7 @@ public class componentesCampoMagentico {
 		xLblVel.setBounds(margen, 0 , 200, 50);
 		vPrincipal.add(xLblVel);
 		
+		modeloX = new SpinnerNumberModel(0, vPrincipal.ORIGENX*-2, vPrincipal.ORIGENY*2, 5);
 		xVelocidad = new JSpinner(modeloX);
 		xVelocidad.setBounds(margen, 50, 200, 50);
 		vPrincipal.add(xVelocidad);
@@ -39,7 +41,8 @@ public class componentesCampoMagentico {
 		yLblVel.setBounds(margen, 100, 200, 50);
 		vPrincipal.add(yLblVel);
 		
-		yVelocidad = new JSpinner();
+		modeloY = new SpinnerNumberModel(0, vPrincipal.ORIGENY*-2, vPrincipal.ORIGENY*2, 5);
+		yVelocidad = new JSpinner(modeloY);
 		yVelocidad.setBounds(margen, 150, 200, 50);
 		vPrincipal.add(yVelocidad);
 		
@@ -47,7 +50,8 @@ public class componentesCampoMagentico {
 		xLblCampo.setBounds(margen, 200, 200, 50);
 		vPrincipal.add(xLblCampo);
 		
-		xCampoMagnetico = new JSpinner();
+		sofiaX = new SpinnerNumberModel(0, vPrincipal.ORIGENY*-2, vPrincipal.ORIGENY*2, 5);
+		xCampoMagnetico = new JSpinner(sofiaX);
 		xCampoMagnetico.setBounds(margen, 250, 200, 50);
 		vPrincipal.add(xCampoMagnetico);
 		
@@ -55,7 +59,8 @@ public class componentesCampoMagentico {
 		yLblCampo.setBounds(margen, 300, 200, 50);
 		vPrincipal.add(yLblCampo);
 		
-		yCampoMagnetico = new JSpinner();
+		sofiaY = new SpinnerNumberModel(0, vPrincipal.ORIGENY*-2, vPrincipal.ORIGENY*2, 5);
+		yCampoMagnetico = new JSpinner(sofiaY);
 		yCampoMagnetico.setBounds(margen, 350, 200, 50);
 		vPrincipal.add(yCampoMagnetico);
 		
@@ -119,7 +124,5 @@ public class componentesCampoMagentico {
 		lblPorDiez.setVisible(true);
 		notacion.setVisible(true);
 		magnitud.setVisible(true); 
-	}
-	public void cargarSpinners() {	
 	}
 }

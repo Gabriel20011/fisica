@@ -654,11 +654,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			
 		}
 		else if (arg0.getActionCommand() == "Sofia") {
-<<<<<<< HEAD
 			double carga = Double.parseDouble(vSofia.magnitud+"E"+vSofia.notacion.getSelectedIndex());
-=======
-			double carga = vSofia.
->>>>>>> branch 'ramaJuan' of https://github.com/Gabriel20011/fisica
 			double xVel = Double.parseDouble(vSofia.xVelocidad.getValue().toString());
 			double yVel = Double.parseDouble(vSofia.yVelocidad.getValue().toString());
 			double xField = Double.parseDouble(vSofia.xCampoMagnetico.getValue().toString());

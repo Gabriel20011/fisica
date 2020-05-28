@@ -3,9 +3,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
 public class componentesCampoMagentico {
 	
@@ -31,7 +31,8 @@ public class componentesCampoMagentico {
 		xLblVel.setBounds(margen, 0 , 200, 50);
 		vPrincipal.add(xLblVel);
 		
-		xVelocidad = new JSpinner();
+		modeloX = new SpinnerNumberModel(value, minimum, maximum, stepSize);
+		xVelocidad = new JSpinner(modeloX);
 		xVelocidad.setBounds(margen, 50, 200, 50);
 		vPrincipal.add(xVelocidad);
 		

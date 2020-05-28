@@ -654,7 +654,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			
 		}
 		else if (arg0.getActionCommand() == "Sofia") {
-			double carga = vSofia.c
+			double carga = vSofia.
 			double xVel = Double.parseDouble(vSofia.xVelocidad.getValue().toString());
 			double yVel = Double.parseDouble(vSofia.yVelocidad.getValue().toString());
 			double xField = Double.parseDouble(vSofia.xCampoMagnetico.getValue().toString());

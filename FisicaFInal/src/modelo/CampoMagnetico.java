@@ -32,10 +32,14 @@ public class CampoMagnetico {
 			fuerza += "+ "+String.valueOf(-1*y)+" y ";
 		}if(y>0) {
 			fuerza += "+ "+String.valueOf(y)+" y ";
-		}
-		if(z>=0) {
+		}if(y<0) {
+			fuerza += String.valueOf(y)+" y ";
+		}if(z>=0) {
 			fuerza += "+ "+String.valueOf(z)+" z ";
-	}
+		}else {
+			fuerza += String.valueOf(z)+" z ";
+		}
+		System.out.println(fuerza);
 }
 public double getCarga() {
 	return carga;

@@ -1,4 +1,6 @@
 package vista;
+import java.awt.PageAttributes.OriginType;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -31,7 +33,7 @@ public class componentesCampoMagentico {
 		xLblVel.setBounds(margen, 0 , 200, 50);
 		vPrincipal.add(xLblVel);
 		
-		modeloX = new SpinnerNumberModel(value, minimum, maximum, stepSize);
+		modeloX = new SpinnerNumberModel(0, vPrincipal.ORIGENX*-2, vPrincipal.ORIGENY*2, 5);
 		xVelocidad = new JSpinner(modeloX);
 		xVelocidad.setBounds(margen, 50, 200, 50);
 		vPrincipal.add(xVelocidad);
@@ -40,6 +42,7 @@ public class componentesCampoMagentico {
 		yLblVel.setBounds(margen, 100, 200, 50);
 		vPrincipal.add(yLblVel);
 		
+		modeloY = new SpinnerNumberModel(0, vPrincipal.ORIGENY*-2, vPrincipal.ORIGENY*2, 5);
 		yVelocidad = new JSpinner();
 		yVelocidad.setBounds(margen, 150, 200, 50);
 		vPrincipal.add(yVelocidad);

@@ -21,7 +21,7 @@ import modelo.Carga;
 
 public class VPrincipal extends JFrame implements MouseMotionListener, MouseListener, ActionListener {
 
-	private final int ORIGENX, ORIGENY;
+	public final int ORIGENX, ORIGENY;
 	private PanelPlano pPlano;
 	private VMagnitud vMagnitud;
 	private VPosicion vPosicion;

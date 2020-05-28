@@ -659,7 +659,7 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 		else if (arg0.getActionCommand() == "Sofia") {
 			hacerElementosInvisibles();
 			vSofia.visible();
-			double carga = Double.parseDouble(vSofia.magnitud+"E"+vSofia.notacion.getSelectedIndex());
+			double carga = Double.parseDouble(vSofia.magnitud.getText()+"E"+vSofia.notacion.getSelectedIndex());
 			double xVel = Double.parseDouble(vSofia.xVelocidad.getValue().toString());
 			double yVel = Double.parseDouble(vSofia.yVelocidad.getValue().toString());
 			double xField = Double.parseDouble(vSofia.xCampoMagnetico.getValue().toString());
@@ -673,8 +673,8 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			b.add(yField);
 			b.add((double) 0);
 			c.getMagnetico().fuerzaElectromagnetica(carga, v, b);
-			JOptionPane.showMessageDialog(null, "La fuerza del campo magnetico es: \n" + "("+c.getMagnetico().getX()+" i "+c.getMagnetico().getY()+" j "+c.getMagnetico().getZ()+" k) N");
-			
+
+			JOptionPane.showMessageDialog(null, "La fuerza del campo es:\n" + "("+c.getMagnetico().getFuerza()+") N");			
 		}
 		else if (eventoCalcularN == true) {
 

@@ -121,8 +121,6 @@ public class componentesCampoMagentico {
 		notacion.setVisible(true);
 		magnitud.setVisible(true); 
 	}
-	public void cargarSpinners() {
-		
+	public void cargarSpinners() {	
 	}
-	
 }

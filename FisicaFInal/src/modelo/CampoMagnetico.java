@@ -2,8 +2,6 @@ package modelo;
 import java.util.ArrayList;
 public class CampoMagnetico {
 	private double carga;
-	private ArrayList<Double> velocidad;
-	private ArrayList<Double> campo;
 	private double x;
 	private double y;
 	private double z;
@@ -23,11 +21,9 @@ public class CampoMagnetico {
 		x = productoCruz.get(0);
 		y = productoCruz.get(1);
 		z = productoCruz.get(2);
-		if(x>=0) {
-			fuerza = String.valueOf(x)+" x ";
-		}if(y==0) {
-			fuerza += "+ "+String.valueOf(-1*y)+" y ";
-		}if(y>0) {
+		fuerza = String.valueOf(x)+" x ";
+
+		if(y>=0) {
 			fuerza += "+ "+String.valueOf(y)+" y ";
 		}if(y<0) {
 			fuerza += String.valueOf(y)+" y ";
@@ -42,18 +38,6 @@ public class CampoMagnetico {
 	}
 	public void setCarga(double carga) {
 		this.carga = carga;
-	}
-	public ArrayList<Double> getVelocidad() {
-		return velocidad;
-	}
-	public void setVelocidad(ArrayList<Double> velocidad) {
-		this.velocidad = velocidad;
-	}
-	public ArrayList<Double> getCampo() {
-		return campo;
-	}
-	public void setCampo(ArrayList<Double> campo) {
-		this.campo = campo;
 	}
 	public double getX() {
 		return x;

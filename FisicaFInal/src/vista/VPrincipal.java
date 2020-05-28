@@ -424,6 +424,8 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			hacerElemntosVisibles();
 			vSofia.invisible();
 			pPlano.repaint();
+			c.iniciarPlano(ANCHURA, ALTURA, this);
+
 		}
 		else if (arg0.getActionCommand() == "AceptarMagnitudPositivo") {
 
@@ -692,6 +694,12 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			pPlano.dibujar((Graphics2D) pPlano.getGraphics());
 			revalidate();
 			pPlano.revalidate();
+			c.getMagnetico().setCarga(0);
+			c.getMagnetico().setX(0);
+			c.getMagnetico().setY(0);
+			c.getMagnetico().setZ(0);
+			c.getMagnetico().setFuerza("");
+
 		}
 		else if (eventoCalcularN == true) {
 

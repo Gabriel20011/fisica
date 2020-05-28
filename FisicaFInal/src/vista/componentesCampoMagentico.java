@@ -1,5 +1,7 @@
 package vista;
 
+import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -21,6 +23,7 @@ public class componentesCampoMagentico {
 	protected JComboBox<Integer> notacion;
 	protected JTextField magnitud;
 	private VPrincipal vPrincipal;
+	private JLabel rojo, azul, verde;
 	private final int margen;
 	
 	public componentesCampoMagentico(VPrincipal vPrincipal, int margenX) {
@@ -92,10 +95,27 @@ public class componentesCampoMagentico {
 		calcular.setBounds(margenX-40, 460, 200, 30);
 		vPrincipal.add(calcular);
 		
+		rojo = new JLabel("Fuerza");
+		rojo.setForeground(Color.red);
+		rojo.setBounds(margen, 0 , 100, 20);
+		vPrincipal.add(rojo);
+		
+		verde = new JLabel("Campo");
+		verde.setForeground(Color.green);
+		verde.setBounds(margen+150, 0 , 200, 20);
+		vPrincipal.add(verde);
+		
+		azul = new JLabel("Velocidad");
+		azul.setForeground(Color.blue);
+		azul.setBounds(margen+75, 0 , 300, 20);
+		vPrincipal.add(azul);
 		invisible();
 		
 	}
 	public void invisible() {
+		azul.setVisible(false);
+		rojo.setVisible(false);
+		verde.setVisible(false);
 		calcular.setVisible(false);
 		xLblVel.setVisible(false);
 		yLblVel.setVisible(false);
@@ -111,6 +131,9 @@ public class componentesCampoMagentico {
 		magnitud.setVisible(false); 
 	}
 	public void visible() {
+		azul.setVisible(true);
+		rojo.setVisible(true);
+		verde.setVisible(true);
 		calcular.setVisible(true);
 		xLblVel.setVisible(true);
 		yLblVel.setVisible(true);

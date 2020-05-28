@@ -7,6 +7,8 @@ import modelo.Carga;
 import modelo.LeyCoulomb;
 import modelo.Potencial;
 import vista.MainMenu;
+import vista.PanelPlano;
+import vista.VPrincipal;
 
 public class Controlador {
 
@@ -16,9 +18,12 @@ public class Controlador {
 	private Potencial pot;
 	private ArrayList<Carga> cargas;
 	private CampoMagnetico magnetico;
-	
 
 	public Controlador() {
+		iniciar();
+	}
+
+	public void iniciar() {
 
 		cargas = new ArrayList<Carga>();
 		lc = new LeyCoulomb();
@@ -28,6 +33,19 @@ public class Controlador {
 		vista.setVisible(true);
 		pivote = new Carga();
 		magnetico = new CampoMagnetico();
+	}
+	public void iniciarPlano(int anchura, int altura, VPrincipal h) {
+
+		cargas = new ArrayList<Carga>();
+		lc = new LeyCoulomb();
+		ce = new CampoElectrico();
+		pot = new Potencial();
+		pivote = new Carga();
+		magnetico = new CampoMagnetico();
+		h.setVisible(false);
+		h = null;
+		VPrincipal p = new VPrincipal(this, anchura, altura);
+		p.setVisible(true);
 	}
 	public Potencial getPot() {
 		return pot;
@@ -57,7 +75,7 @@ public class Controlador {
 		seleccionarPivote();
 		ce.vectorCampo(seleccionarPivote(), pivote);
 	}
-	
+
 	public void calcularFuerza() {
 		seleccionarPivote();
 		lc.vectorFuerza(seleccionarPivote(), pivote);
@@ -113,5 +131,5 @@ public class Controlador {
 	public void setMagnetico(CampoMagnetico magnetico) {
 		this.magnetico = magnetico;
 	}
-	
+
 }

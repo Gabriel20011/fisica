@@ -29,6 +29,8 @@ public class componentesCampoMagentico {
 	public componentesCampoMagentico(VPrincipal vPrincipal, int margenX) {
 		this.vPrincipal = vPrincipal;
 		calcular = new JButton("Calcular");
+		calcular.setActionCommand("Sofia");
+		calcular.addActionListener(vPrincipal);
 		xLblVel = new JLabel();
 		yLblVel = new JLabel();
 		xVelocidad = new JSpinner();

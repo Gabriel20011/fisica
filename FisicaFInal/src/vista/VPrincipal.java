@@ -651,11 +651,20 @@ public class VPrincipal extends JFrame implements MouseMotionListener, MouseList
 			
 		}
 		else if (arg0.getActionCommand() == "Sofia") {
-			
-			int xVel = Integer.parseInt(vSofia.xVelocidad.getValue().toString());
-			int yVel = Integer.parseInt(vSofia.yVelocidad.getValue().toString());
-			int xField = Integer.parseInt(vSofia.xCampoMagnetico.getValue().toString());
-			int yField = Integer.parseInt(vSofia.yCampoMagnetico.getValue().toString());
+			double carga = vSofia.c
+			double xVel = Double.parseDouble(vSofia.xVelocidad.getValue().toString());
+			double yVel = Double.parseDouble(vSofia.yVelocidad.getValue().toString());
+			double xField = Double.parseDouble(vSofia.xCampoMagnetico.getValue().toString());
+			double yField = Double.parseDouble(vSofia.yCampoMagnetico.getValue().toString());
+			ArrayList<Double> v = new ArrayList<Double>();
+			ArrayList<Double> b = new ArrayList<Double>();
+			v.add(xVel);
+			v.add(yVel);
+			v.add((double) 0);
+			b.add(xField);
+			b.add(yField);
+			b.add((double) 0);
+			c.getMagnetico().fuerzaElectromagnetica(carga, v, b);
 			
 		}
 		else if (eventoCalcularN == true) {

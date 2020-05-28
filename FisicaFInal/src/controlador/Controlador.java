@@ -2,6 +2,7 @@ package controlador;
 import java.util.ArrayList;
 
 import modelo.CampoElectrico;
+import modelo.CampoMagnetico;
 import modelo.Carga;
 import modelo.LeyCoulomb;
 import modelo.Potencial;
@@ -14,6 +15,7 @@ public class Controlador {
 	private Carga pivote;
 	private Potencial pot;
 	private ArrayList<Carga> cargas;
+	private CampoMagnetico magnetico;
 	
 
 	public Controlador() {
@@ -25,6 +27,7 @@ public class Controlador {
 		MainMenu vista = new MainMenu(this);
 		vista.setVisible(true);
 		pivote = new Carga();
+		magnetico = new CampoMagnetico();
 	}
 	public Potencial getPot() {
 		return pot;
@@ -104,4 +107,11 @@ public class Controlador {
 	public Carga getPivote() {
 		return pivote;
 	}
+	public CampoMagnetico getMagnetico() {
+		return magnetico;
+	}
+	public void setMagnetico(CampoMagnetico magnetico) {
+		this.magnetico = magnetico;
+	}
+	
 }

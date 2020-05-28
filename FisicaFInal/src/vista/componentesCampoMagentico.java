@@ -4,6 +4,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 
 public class componentesCampoMagentico {
@@ -17,35 +18,58 @@ public class componentesCampoMagentico {
 	private JLabel lblCarga;
 	private JLabel  lblPorDiez;
 	protected JComboBox<Integer> notacion;
-	protected JTextArea magnitud;
+	protected JTextField magnitud;
 	private VPrincipal vPrincipal;
+	private final int margen;
 	
 	public componentesCampoMagentico(VPrincipal vPrincipal, int margenX) {
 		this.vPrincipal = vPrincipal;
 		
+		this.margen = margenX - 40;
 		
 		xLblVel = new JLabel("Velocidad en X (m/s)");
-		xLblVel.setBounds(margenX, 20 , 200, 50);
+		xLblVel.setBounds(margen, 0 , 200, 50);
 		vPrincipal.add(xLblVel);
 		
 		xVelocidad = new JSpinner();
-		xVelocidad.setBounds(margenX, 70, 200, 50);
+		xVelocidad.setBounds(margen, 50, 200, 50);
 		vPrincipal.add(xVelocidad);
 		
 		yLblVel = new JLabel("Velocidad en Y (m/s)");
+		yLblVel.setBounds(margen, 100, 200, 50);
+		vPrincipal.add(yLblVel);
+		
 		yVelocidad = new JSpinner();
+		yVelocidad.setBounds(margen, 150, 200, 50);
+		vPrincipal.add(yVelocidad);
 		
 		xLblCampo = new JLabel("Campo magnetico en X (T)");
+		xLblCampo.setBounds(margen, 200, 200, 50);
+		vPrincipal.add(xLblCampo);
+		
 		xCampoMagnetico = new JSpinner();
+		xCampoMagnetico.setBounds(margen, 250, 200, 50);
+		vPrincipal.add(xCampoMagnetico);
 		
 		yLblCampo = new JLabel("Campo magnetico en Y (T)");
+		yLblCampo.setBounds(margen, 300, 200, 50);
+		vPrincipal.add(yLblCampo);
+		
 		yCampoMagnetico = new JSpinner();
+		yCampoMagnetico.setBounds(margen, 350, 200, 50);
+		vPrincipal.add(yCampoMagnetico);
 		
-		lblCarga = new JLabel("Magnitud Carga (c)");
+		lblCarga = new JLabel("Carga (c)");
+		lblCarga.setBounds(margenX- 80, 400, 200, 50);
+		vPrincipal.add(lblCarga);
 		
-		magnitud = new JTextArea();
+		magnitud = new JTextField();
+		magnitud.setBounds(margenX, 412, 50, 25);
+		vPrincipal.add(magnitud);
 		
-		lblPorDiez = new JLabel("x10"); 
+		lblPorDiez = new JLabel("x10");
+		lblPorDiez.setBounds(margenX + 60, 400, 50, 50);
+		vPrincipal.add(lblPorDiez);
 		
 		Integer[] exponentes = new Integer[37];
 		for (int i = 0; i < exponentes.length; i++) {
@@ -54,10 +78,16 @@ public class componentesCampoMagentico {
 		
 		notacion = new JComboBox<Integer>(exponentes);
 		notacion.setSelectedIndex(18);
+		notacion.setBounds(margenX + 100, 410, 45, 30);
+		vPrincipal.add(notacion);
 		
 		calcular = new JButton("Calcular");
 		calcular.setActionCommand("Sofia");
-		calcular.addActionListener(vPrincipal);;
+		calcular.addActionListener(vPrincipal);
+		calcular.setBounds(margenX-40, 460, 200, 30);
+		vPrincipal.add(calcular);
+		
+		invisible();
 		
 	}
 	public void invisible() {
